@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const allergenSchema = new Schema(
+const allergenSchema = new mongoose.Schema(
   {
     name: {
       type: String,

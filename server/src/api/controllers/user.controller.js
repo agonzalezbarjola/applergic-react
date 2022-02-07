@@ -1,4 +1,4 @@
-const User = require('./user.model')
+const User = require('../models/user.model')
 const bcrypt = require('bcrypt')
 const { setError } = require("../../utils/errors/error");
 const { generateSign, verifyJwt } = require('../../utils/jwt/jwtUtils')
@@ -14,7 +14,7 @@ const postNewUser = async (req, res, next) => {
         return res.status(201).json({ name: userDB.name, email: userDB.email })
 
     } catch (error) {
-        return next(error)
+        return next(setError (500, 'No se ha podido registrar'))
     }
 }
 
@@ -30,7 +30,7 @@ const loginUser = async (req, res, next) => {
         }
     } catch (error) {
         error.message = 'error Login'
-        return next(error)
+        return next(setError (500, 'No se ha podido logear'))
     }
 }
 
@@ -52,7 +52,7 @@ const getUser = async (req, res, next) => {
         if (!userDB) {
             return next(setError(404, 'User not found'))
         }
-        return res.status(200).json({ name: userDB.name, email: userDB.email })
+        return res.status(200).json({ userDB: userDB })
 
     } catch (error) {
         return next(setError(404, 'User server fail'))

@@ -1,11 +1,11 @@
 const mongoose= require('mongoose');
 
-const Schema = monotype.Schema;
 
-const ratingsSchema = new Schema (
+
+const ratingsSchema = new mongoose.Schema (
     {
-        rating: {type: number},
-        user: {type: mongoose.Types.ObjectId, ref: 'User'},
+        rating: {type: Number}
+       /*  user: {type: mongoose.Types.ObjectId, ref: 'User'}, */
     },
     {
         timestamp: true,
