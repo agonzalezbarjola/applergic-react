@@ -5,7 +5,7 @@ const { setError } = require("../../utils/errors/error");
 
 const userSchema = new mongoose.Schema(
   {
-    image: { type: String, default: ''},
+    image: { type: String,},
     name: { type: String, trim: true, required: true },
     email: { type: String, trim: true, required: true, unique: true },
     phone: { type: String, trim: true, required: true, unique: true },

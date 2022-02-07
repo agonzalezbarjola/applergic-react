@@ -10,8 +10,11 @@ const postNewUser = async (req, res, next) => {
         if (userDuplicate) {
             return next(setError(404, 'Email existente'))
         }
+        if (req.file) {
+            newUser.image = req.file.path;
+          }
         const userDB = await newUser.save()
-        return res.status(201).json({ name: userDB.name, email: userDB.email })
+        return res.status(201).json({ userID: userDB._id })
 
     } catch (error) {
         return next(setError (500, 'No se ha podido registrar'))
