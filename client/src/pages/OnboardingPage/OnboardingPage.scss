@@ -1,0 +1,26 @@
+@import "../../index.scss";
+
+.c-onboardingPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    &__title{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 40%;
+
+       
+        
+    }
+    &__logo{   
+        display: flex;
+         height: 60%;
+        img{
+            width: 100%;
+        }
+    }
+}
