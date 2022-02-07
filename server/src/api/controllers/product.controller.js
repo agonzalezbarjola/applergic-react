@@ -1,15 +1,19 @@
 
 const Product = require ("../models/product.model")
+const { setError } = require("../../utils/errors/error");
 
-const getAllProduct = async (req, res, next) => {
+
+const getProduct = async (req, res, next) => {
     try {
-      const { id } = req.params;
-      const productDb = await Artist.findById(id);
-      if (!artistDb) {
-        return next(setError(404, "Artist not found"));
+      const { code } = req.params;
+      const productDb = await Product.findById(code);
+      if (!productDb) {
+        return next(setError(404, "Product not found"));
       }
-      return res.status(200).json(artistDb);
+      return res.status(200).json(productDb);
     } catch (error) {
-      return next(setError(500, "Artist server error"));
+      return next(setError(500, "Product server error"));
     }
   };
+
+  module.exports = { getProduct };
