@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import FormOne from "../../components/Register/FormOne";
-import FormTwo from "../../components/Register/FormTwo";
-import FormThree from "../../components/Register/FormThree";
-import FormFour from "../../components/Register/FormFour";
+import FormOne from "../../components/Register/FormOne/FormOne";
+import FormTwo from "../../components/Register/FormTwo/FormTwo";
+import FormThree from "../../components/Register/FormThree/FormThree";
+import FormFour from "../../components/Register/FormFour/FormFour";
 function RegisterPage() {
-  const [register, setRegister] = useState("jean");
-  const [pagination, setPagination] = useState(1);
- 
+  const [register, setRegister] = useState([]);
+   const [pagination, setPagination] = useState(1);
+
+  //funcion a ejecutar en el hijo
+  const addData = (data) => {
+    //const newRegister = ({...register, data});
+    setRegister(data);
+    setPagination(pagination + 1);
+  };
+  
+
+  console.log("reg1", register);
+  
+  console.log(pagination);
   return (
     <div>
       <div>
@@ -21,11 +32,10 @@ function RegisterPage() {
         </Link>
         <p>{pagination} de 4</p>
       </div>
-      {pagination === 1 && <FormOne prop1={register} prop2={{setRegister}}/>}
-      {pagination === 2 && <FormTwo />}
+      {pagination === 1 && <FormOne props={addData} props2={register} />}
+      {pagination === 2 && <FormTwo props={addData} props2={register} />}
       {pagination === 3 && <FormThree />}
       {pagination === 4 && <FormFour />}
-      
     </div>
   );
 }

@@ -10,6 +10,7 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   //   const [token, setToken] = useState("");
   const onSubmit = (formData) => {
+    console.log(formData);
     API.post("login", formData)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
@@ -22,6 +23,7 @@ const LoginPage = () => {
         setError("La contraseña o el email no es correcto, compruebalo!");
       });
   };
+  
   return (
     <div>
       <img
