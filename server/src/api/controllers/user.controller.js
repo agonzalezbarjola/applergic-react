@@ -29,7 +29,7 @@ const loginUser = async (req, res, next) => {
         }
         if (bcrypt.compareSync(req.body.password, userDB.password)) {
             const token = generateSign(userDB._id, userDB.email)
-            return res.status(200).json(token)
+            return res.status(200).json({token: token, userDB: userDB},)
         }
     } catch (error) {
         error.message = 'error Login'
@@ -62,5 +62,18 @@ const getUser = async (req, res, next) => {
     }
 }
 
+const getAllUsers = async (req, res, next) => {
+    try {
+        const userDB = await User.find()
+        if (!userDB) {
+            return next(setError(404, 'User not found'))
+        }
+        return res.status(200).json({ userDB: userDB })
+
+    } catch (error) {
+        return next(setError(404, 'User server fail'))
+    }
+}
+
 module.exports = {
-    postNewUser, loginUser, logoutUser, getUser }
+    postNewUser, loginUser, logoutUser, getUser, getAllUsers }
