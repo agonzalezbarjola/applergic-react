@@ -1,0 +1,24 @@
+@import "./../../index.scss";
+
+.main {
+  width: 300px;
+  &__btn {
+    width: 100%;
+    text-align: center;
+    button {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      align-items: center;
+      height: 50pt;
+      width: 100%;
+      img {
+        position: absolute;
+        left: 40px;
+        top: 0;
+        bottom: 0;
+        width: 50px;
+      }
+    }
+  }
+}

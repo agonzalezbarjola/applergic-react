@@ -1,0 +1,15 @@
+@import "../../index.scss";
+
+.footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    &__nav{
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        img{
+            width: 48pt;
+        }
+    }
+}

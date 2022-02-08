@@ -1,0 +1,53 @@
+@import "../../index.scss";
+
+.navbar {
+  width: 180pt;
+  height: 392pt;
+  background-color: lightblue;
+  display: none;
+  &__close {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    img {
+      width: 24pt;
+      margin: 15pt;
+    }
+  }
+
+  &__btn {
+    img {
+      width: 177pt;
+      height: 48pt;
+    }
+  }
+}
+
+.dropmenu {
+  position: absolute;
+  width: 180pt;
+  height: 392pt;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  order: 1;
+  &__close {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    img {
+      width: 24pt;
+      margin: 15pt;
+    }
+  }
+
+  &__btn {
+    img {
+      width: 177pt;
+      height: 48pt;
+    }
+  }
+}
+
+
