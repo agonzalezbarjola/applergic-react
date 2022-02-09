@@ -1,9 +1,9 @@
-import React from 'react';
+/* import React from 'react';
 import anime from "animejs";
 import "./Logoanimation.scss"
 import {ReactComponent as ReactLogo} from '../../../src/logo.svg';
 
-const restart = document.querySelector(".button-restart");
+
 const logoAnimation = anime.timeline({ 
   autoplay: true,
   delay: 200
@@ -70,3 +70,4 @@ const Logoanimation = () => {
 };
 
 export default Logoanimation;
+ */

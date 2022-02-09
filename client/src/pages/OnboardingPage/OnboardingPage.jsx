@@ -50,7 +50,7 @@ function OnboardingPage() {
             <h4>Mi guía alimentaria</h4>
           </div>
           <div className="c-onboardingPage__logo">
-            <img class="rotate"
+            <img className="rotate"
               src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644261304/logoApplergic_laexqz.png"
               alt="logo Applergic"
             />
