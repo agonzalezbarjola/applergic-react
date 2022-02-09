@@ -19,7 +19,6 @@ function RegisterPage() {
 
   console.log("reg1", register);
 
-  //console.log(pagination);
   return (
     <div className="registerpage">
       <div className="registerpage__header">

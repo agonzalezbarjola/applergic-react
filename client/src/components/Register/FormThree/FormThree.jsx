@@ -7,6 +7,7 @@ import "./FormThree.scss";
 function FormThree({ props, props2 }) {
   const [allergens, setAllergens] = useState([]);
   const [allergens2, setAllergens2] = useState([]);
+
   const { register, handleSubmit } = useForm();
   //console.log(localStorage.getItem("token"));
   const getAllergens = async () => {
@@ -27,12 +28,12 @@ function FormThree({ props, props2 }) {
     getAllergens();
   }, []);
 
-  const onClickForm = (formData) => {
-    props({
-      ...props2,
-      allergens: formData.allergens,
-    });
-  };
+  // const onClickForm = (formData) => {
+  //   props({
+  //     ...props2,
+  //     allergens: formData.allergens,
+  //   });
+  // };
 
   const allergensLetter = [];
 
@@ -49,8 +50,10 @@ function FormThree({ props, props2 }) {
   getLetterAllergen();
 
   const setAllergyConfirm = (formData) => {
+    console.log(formData);
     setAllergens2(formData.allergens);
   };
+
   return (
     <div>
       <Confirmation props={props} props2={props2} props3={allergens2} />
@@ -83,10 +86,16 @@ function FormThree({ props, props2 }) {
                       <label>{allergen.name}</label>
                       <input
                         type="checkbox"
-                        key={allergen.name}
+                        key={allergen._id}
                         value={allergen.name}
                         {...register("allergens")}
                       ></input>
+                      {/* <input
+                        type="hidden"
+                        key={allergen._id}
+                        value={allergen.name}
+                        {...register("name")}
+                      ></input> */}
                     </>
                   ) : (
                     ""

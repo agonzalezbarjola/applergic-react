@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import "./FormOne.scss";
 function FormOne( {props, props2} ) {
   const { register, handleSubmit } = useForm();
-  //console.log(props, props2);
+  
   const onClickForm = (formData) => {
-    console.log(formData);
+    
 
     props({...props2,name: formData.name, email: formData.email, phone: formData.phone, password: formData.password, });
   };
