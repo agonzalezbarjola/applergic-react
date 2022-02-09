@@ -19,7 +19,7 @@ const Products =[
         name: "Refresco de Cola",
         brand: " Coca-cola",
         image: "https://res.cloudinary.com/dkv0drgbb/image/upload/v1644398846/Cocacola_xomiuq.png",
-        allergens:[``],
+        allergens:[],
         ingredients:"Agua carbonatada, azúcar, colorante: E-150d, acidulante: ácido fosfórico y aromas naturales (incluyendo cafeína).",
         code: "5449000000996"
     },
