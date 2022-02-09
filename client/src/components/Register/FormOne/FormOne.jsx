@@ -3,11 +3,11 @@ import { useForm } from "react-hook-form";
 import "./FormOne.scss";
 function FormOne( {props, props2} ) {
   const { register, handleSubmit } = useForm();
-  console.log(props, props2);
+  //console.log(props, props2);
   const onClickForm = (formData) => {
-    //console.log(formData);
+    console.log(formData);
 
-    props({...props2,name: formData.name, email: formData.email, phone: formData.phone, password: formData.password});
+    props({...props2,name: formData.name, email: formData.email, phone: formData.phone, password: formData.password, });
   };
 
   return (
@@ -25,7 +25,7 @@ function FormOne( {props, props2} ) {
             ></img>
             subir foto
           </label>
-          <input type="file" name="photo" id="upload-photo" />
+          <input type="file" name="photo" id="upload-photo" {...register("image")}/>
         </div>
         <input
           type="text"

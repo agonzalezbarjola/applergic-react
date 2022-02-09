@@ -19,14 +19,14 @@ function RegisterPage() {
 
   console.log("reg1", register);
 
-  console.log(pagination);
+  //console.log(pagination);
   return (
     <div className="registerpage">
       <div className="registerpage__header">
         <div className="registerpage__header--back">
           <Link to={"/login"}>
             {""}
-            <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644332335/volver_3x_nszfrh.png" /> {''}
+            <img alt="" src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644332335/volver_3x_nszfrh.png" /> {''}
             <p>volver</p>
           </Link>
         </div>

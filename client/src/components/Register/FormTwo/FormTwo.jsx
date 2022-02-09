@@ -11,6 +11,7 @@ function FormTwo({ props, props2 }) {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
+        company: formData.company
       },
     });
   };
