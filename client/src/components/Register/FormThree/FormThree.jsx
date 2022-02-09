@@ -6,9 +6,17 @@ import "./FormThree.scss";
 function FormThree({ props, props2 }) {
   const [allergens, setAllergens] = useState([]);
   const { register, handleSubmit } = useForm();
-
+  console.log(localStorage.getItem("token"));
   const getAllergens = async () => {
-    const res = await axios("http://localhost:8000/api/allergens/");
+    const res = await axios("http://localhost:8000/api/allergens", {
+      headers: {
+        Authorization: {
+          toString() {
+            return `Bearer ${localStorage.getItem("token")}`;
+          },
+        },
+      },
+    });
 
     setAllergens(res.data);
   };
@@ -52,11 +60,35 @@ function FormThree({ props, props2 }) {
           Los elementos marcados seran identificados en tus busquedas como
           peligrosos para ti.
         </p>
+        <div>
+          {allergensLetter.map((letter) => {
+            return (
+              <div key={letter}>
+                <a href={`#` + letter}>{letter}</a>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <form className="form" onSubmit={handleSubmit(onClickForm)}>
         {allergensLetter.map((letter) => {
-          return <a href={`#`+letter}>{letter}</a>;
+          return (
+            <div key={letter}>
+              <p>{letter}</p>
+              <div id={`#` + letter}>
+                {allergens.map((allergen) =>
+                  allergen.name.charAt(0) === letter ? (
+                    <button onClick={(e) => e.preventDefault()}>
+                      {allergen.name}
+                    </button>
+                  ) : (
+                    ""
+                  )
+                )}
+              </div>
+            </div>
+          );
         })}
         <button type="submit">Guardar</button>
       </form>
