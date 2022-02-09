@@ -9,22 +9,31 @@ function Confirmation({ props, props2, props3 }) {
       ...props2,
       allergens: props3,
     });
-    axios
-      .post("http://localhost:8000/api/users/register", {
-        name: props2.name,
-        email: props2.email,
-        phone: props2.phone,
-        password: props2.password,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    // axios
+    //   .post("http://localhost:8000/api/users/register", {
+    //     name: props2.name,
+    //     email: props2.email,
+    //     phone: props2.phone,
+    //     password: props2.password,
+    //     emergyContact: {
+    //       name: props2.emergyContact.name,
+    //       phone: props2.emergyContact.phone,
+    //       email: props2.emergyContact.email,
+    //       insurance: {
+    //         company: props2.emergyContact.company,
+    //       },
+    //     },
+    //     allergens: props3,
+    //   })
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   };
 
-  // console.log(props3);
+  console.log(props3);
   return (
     <div>
       <h2>Confirma tu selección.</h2>
