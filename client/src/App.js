@@ -5,6 +5,7 @@ import { JwtContext } from "./shared/JwtContext/JwtContext";
 import { useState } from "react";
 import RegisterPage from "./pages/ResgisterPage/RegisterPage"
 import HomePage from "./pages/HomePage/HomePage";
+import Rated from "./components/Rated/Rated";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/home" element={<HomePage />} />
+            <Route path="/rated" element={<Rated />} />
           </Routes>
         </Router>
       </div>

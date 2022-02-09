@@ -55,14 +55,18 @@ function FormThree({ props, props2 }) {
   };
 
   return (
-    <div>
+    <div className="c-formthree">
       <Confirmation props={props} props2={props2} props3={allergens2} />
-      <div>
+
+      <div className="c-formthree__title">
         <h2>Ahora selecciona tus alergias e intolerancias.</h2>
         <p>
           Los elementos marcados seran identificados en tus busquedas como
           peligrosos para ti.
         </p>
+      </div>
+
+      <div className="c-formthree__abc" >
         <div>
           {allergensLetter.map((letter) => {
             return (
@@ -74,6 +78,7 @@ function FormThree({ props, props2 }) {
         </div>
       </div>
 
+      <div className="c-formthree__abc" >
       <form className="form" onSubmit={handleSubmit(setAllergyConfirm)}>
         {allergensLetter.map((letter) => {
           return (
@@ -107,6 +112,7 @@ function FormThree({ props, props2 }) {
         })}
         <button type="submit">Guardar</button>
       </form>
+      </div>      
     </div>
   );
 }
