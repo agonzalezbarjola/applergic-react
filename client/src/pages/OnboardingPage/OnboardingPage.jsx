@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import LogoAnimation from "../../components/LogoAnimation/Logoanimation"
+
 import "./OnboardingPage.scss";
 const logo =
   "https://res.cloudinary.com/dkv0drgbb/image/upload/v1644310001/logo_3x_ljukvu.png";
@@ -53,6 +55,7 @@ function OnboardingPage() {
               alt="logo Applergic"
             />
           </div>
+          {/* <LogoAnimation /> */}
         </div>
       )}
       {!splash && (
