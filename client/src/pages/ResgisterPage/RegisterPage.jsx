@@ -8,12 +8,12 @@ import FormFour from "../../components/Register/FormFour/FormFour";
 function RegisterPage() {
   const [register, setRegister] = useState([]);
   const [pagination, setPagination] = useState(1);
-
+  const [confirmation, setConfirmation] = useState(false);
   //funcion a ejecutar en el hijo
   const addData = (data) => {
     //const newRegister = ({...register, data});
     setRegister(data);
-    setPagination(pagination + 1);
+    setPagination(confirmation === false ? pagination + 1 : 4);
   };
 
 
@@ -35,7 +35,7 @@ function RegisterPage() {
       <div className="registerpage__pagination">
         {pagination === 1 && <FormOne props={addData} props2={register} />}
         {pagination === 2 && <FormTwo props={addData} props2={register} />}
-        {pagination === 3 && <FormThree />}
+        {pagination === 3 && <FormThree props={addData} props2={register}/>}
         {pagination === 4 && <FormFour />}
       </div>
 

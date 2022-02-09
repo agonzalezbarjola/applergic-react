@@ -1,5 +1,5 @@
 import React from 'react';
-import anime from 'animejs/lib/anime.es.js'
+import anime from "animejs";
 import "./Logoanimation.scss"
 import {ReactComponent as ReactLogo} from '../../../src/logo.svg';
 
@@ -42,7 +42,7 @@ logoAnimation.add({
   offset: 1000
 })
 
-restart.addEventListener("click", () => logoAnimation.restart());
+// restart.addEventListener("click", () => logoAnimation.restart());
 
 
 const Logoanimation = () => {

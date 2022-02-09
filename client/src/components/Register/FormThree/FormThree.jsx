@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import Confirmation from "./Confirmation/Confirmation";
 import "./FormThree.scss";
 
 function FormThree({ props, props2 }) {
   const [allergens, setAllergens] = useState([]);
+  const [allergens2, setAllergens2] = useState([]);
   const { register, handleSubmit } = useForm();
-  console.log(localStorage.getItem("token"));
+  //console.log(localStorage.getItem("token"));
   const getAllergens = async () => {
     const res = await axios("http://localhost:8000/api/allergens", {
       headers: {
@@ -28,12 +30,7 @@ function FormThree({ props, props2 }) {
   const onClickForm = (formData) => {
     props({
       ...props2,
-      emergyContact: {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        company: formData.company,
-      },
+      allergens: formData.allergens,
     });
   };
 
@@ -44,16 +41,19 @@ function FormThree({ props, props2 }) {
       .sort((a, b) => (a.name > b.name ? 1 : -1))
       .map((allergen) => {
         if (!allergensLetter.includes(allergen.name.charAt(0))) {
-          allergensLetter.push(allergen.name.charAt(0));
+          return allergensLetter.push(allergen.name.charAt(0));
         }
       });
   };
 
   getLetterAllergen();
-  console.log(allergensLetter);
 
+  const setAllergyConfirm = (formData) => {
+    setAllergens2(formData.allergens);
+  };
   return (
     <div>
+      <Confirmation props={props} props2={props2} props3={allergens2} />
       <div>
         <h2>Ahora selecciona tus alergias e intolerancias.</h2>
         <p>
@@ -71,7 +71,7 @@ function FormThree({ props, props2 }) {
         </div>
       </div>
 
-      <form className="form" onSubmit={handleSubmit(onClickForm)}>
+      <form className="form" onSubmit={handleSubmit(setAllergyConfirm)}>
         {allergensLetter.map((letter) => {
           return (
             <div key={letter}>
@@ -79,9 +79,15 @@ function FormThree({ props, props2 }) {
               <div id={`#` + letter}>
                 {allergens.map((allergen) =>
                   allergen.name.charAt(0) === letter ? (
-                    <button onClick={(e) => e.preventDefault()}>
-                      {allergen.name}
-                    </button>
+                    <>
+                      <label>{allergen.name}</label>
+                      <input
+                        type="checkbox"
+                        key={allergen.name}
+                        value={allergen.name}
+                        {...register("allergens")}
+                      ></input>
+                    </>
                   ) : (
                     ""
                   )
