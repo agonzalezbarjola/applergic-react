@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import './Rated.scss';
 import ReactStars from "react-rating-stars-component";
 
@@ -48,3 +48,4 @@ const Rated = () => {
 };
 
 export default Rated;
+ */

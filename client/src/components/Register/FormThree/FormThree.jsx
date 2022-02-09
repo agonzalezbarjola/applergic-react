@@ -49,10 +49,17 @@ function FormThree({ props, props2 }) {
 
   getLetterAllergen();
 
-  const setAllergyConfirm = (formData) => {
-    console.log(formData);
-    setAllergens2(formData.allergens);
+  const setAllergyConfirm = (data) => {
+    const arraySplit = data.allergens.map((item) => item.split("-"));
+    console.log(arraySplit);
+    const arrayToSet = arraySplit.map((item, index) =>
+      item.map((item2) => item2)
+    );
+    console.log(arrayToSet);
+    setAllergens2(arrayToSet);
   };
+
+  console.log(allergens2);
 
   return (
     <div className="c-formthree">
@@ -66,7 +73,7 @@ function FormThree({ props, props2 }) {
         </p>
       </div>
 
-      <div className="c-formthree__abc" >
+      <div className="c-formthree__abc">
         <div>
           {allergensLetter.map((letter) => {
             return (
@@ -78,41 +85,35 @@ function FormThree({ props, props2 }) {
         </div>
       </div>
 
-      <div className="c-formthree__abc" >
-      <form className="form" onSubmit={handleSubmit(setAllergyConfirm)}>
-        {allergensLetter.map((letter) => {
-          return (
-            <div key={letter}>
-              <p>{letter}</p>
-              <div id={`#` + letter}>
-                {allergens.map((allergen) =>
-                  allergen.name.charAt(0) === letter ? (
-                    <>
-                      <label>{allergen.name}</label>
-                      <input
-                        type="checkbox"
-                        key={allergen._id}
-                        value={allergen.name}
-                        {...register("allergens")}
-                      ></input>
-                      {/* <input
-                        type="hidden"
-                        key={allergen._id}
-                        value={allergen.name}
-                        {...register("name")}
-                      ></input> */}
-                    </>
-                  ) : (
-                    ""
-                  )
-                )}
+      <div className="c-formthree__abc">
+        <form className="form" onSubmit={handleSubmit(setAllergyConfirm)}>
+          {allergensLetter.map((letter) => {
+            return (
+              <div>
+                {/* <p>{letter}</p> */}
+                <div id={`#` + letter}>
+                  {allergens.map((allergen) =>
+                    allergen.name.charAt(0) === letter ? (
+                      <>
+                        <label key={allergen._id}>{allergen.name}</label>
+                        <input
+                          type="checkbox"
+                          value={allergen.name + "-" + allergen._id}
+                          name={allergen.name}
+                          {...register("allergens")}
+                        ></input>
+                      </>
+                    ) : (
+                      ""
+                    )
+                  )}
+                </div>
               </div>
-            </div>
-          );
-        })}
-        <button type="submit">Guardar</button>
-      </form>
-      </div>      
+            );
+          })}
+          <button type="submit">Guardar</button>
+        </form>
+      </div>
     </div>
   );
 }
