@@ -44,6 +44,18 @@ const Allergens = [
   {
     name: "moluscos",
   },
+  {
+    name: "frutos secos",
+  },
+  {
+    name: "gluten",
+  },  
+  {
+    name: "huevos",
+  },  
+  {
+    name: "maiz",
+  },
 ];
 
 const AllergensDocument = Allergens.map(
