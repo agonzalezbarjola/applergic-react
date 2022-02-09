@@ -7,9 +7,10 @@ const productSchema = new Schema (
     name: { type: String, required: true},
     brand: { type: String, required: true},
     image: { type: String,},
-    allergens:[{ type: mongoose.Types.ObjectId, ref:"Allergen"}],
-    ingredients:[{ type: String, required: true}],
+    allergens:[{ type: Schema.Types.ObjectId, ref:"Allergen"}],
+    ingredients:{ type: String, required: true},
     code: { type: String, required: true}
+    
 },
 {
     timestamps: true,

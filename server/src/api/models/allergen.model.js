@@ -12,5 +12,5 @@ const allergenSchema = new mongoose.Schema(
   }
 );
 
-const Allergen = mongoose.model("allergen", allergenSchema);
+const Allergen = mongoose.model("Allergen", allergenSchema);
 module.exports = Allergen;
