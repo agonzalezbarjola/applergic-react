@@ -21,3 +21,84 @@
         }
     }
 }
+
+.c-onboarding {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;    
+    height: 90vh;
+    
+    &__logo {
+        
+        margin: 0px auto;
+        
+        img {
+            width: 130px;
+           
+        }
+    }
+
+    &__main {
+
+        width: 220px;
+        height: 360px;
+        
+
+        img{
+
+            width: 100%
+        }
+
+        p {
+            font-size: 16px;
+            text-align: center;
+            margin: 20px 0;
+        }
+    }
+
+    &__slide {
+
+        img {
+            width: 80px
+        }
+    }
+
+    &__btn {
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 10vh;        
+        padding: 0 25px;
+        font-size: 14px;
+
+        a {
+            text-decoration: none;
+            color: $grey;
+        }
+        
+        p {
+            color: $grey;
+            font-size: 14px;
+            font-weight: normal;
+
+        }
+
+        button {
+            display: flex;
+            background: transparent;
+            border: none;
+            align-items: center;
+            color: $grey;
+            font-size: 14px;
+            font-family: "Montserrat", sans-serif;                       
+
+            img {
+                width: 8px;
+                margin-left: 5px;
+            }
+        }
+    }
+}

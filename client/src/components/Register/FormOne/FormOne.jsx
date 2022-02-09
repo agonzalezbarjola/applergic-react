@@ -11,7 +11,7 @@ function FormOne( {props, props2} ) {
   };
 
   return (
-    <div>
+    <div >
       <div>
         <h2>Dinos quien eres.</h2>
       </div>

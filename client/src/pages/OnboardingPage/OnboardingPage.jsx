@@ -35,14 +35,14 @@ const onboardingArray = [
 ];
 
 function OnboardingPage() {
-  const [splash, setSplash] = useState(false);
+  const [splash, setSplash] = useState(true);
   const [slide, setSlide] = useState(0);
   console.log(slide);
 
   return (
     <>
       {splash && (
-        <div className="c-onboardingPage">
+        <div  onClick={() => setSplash(false)}className="c-onboardingPage">
           <div className="c-onboardingPage__title">
             <h1>Applergic</h1>
             <h4>Mi guía alimentaria</h4>
@@ -57,28 +57,32 @@ function OnboardingPage() {
       )}
       {!splash && (
         <>
-          <div>
-            <img src={logo} alt="logo"></img>
-            <div>
-              <img
-                src={onboardingArray[slide].image}
-                alt="imagenes slide"
-              ></img>
+          <div className="c-onboarding">
+
+            <div className="c-onboarding__logo">
+              <img src={logo} alt="logo" />
+            </div>
+
+            <div className="c-onboarding__main">
+              <img src={onboardingArray[slide].image} alt="imagenes slide" />
               <p>{onboardingArray[slide].text}</p>
             </div>
+            <div className="c-onboarding__slide">
+              {slide === 0 && <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644311742/1-dot_ufasds.png" alt="" />}
+              {slide === 1 && <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644311742/4-dot_uqddh9.png" alt="" />}
+              {slide === 2 && <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644311742/3-dot_lxaklk.png" alt="" />}
+              {slide === 3 && <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644311742/2-dot_ty1lwi.png" alt="" />}
+            </div>
+
+
           </div>
-          <div>
-            {slide === 0 && <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644311742/1-dot_ufasds.png" alt=""></img>}
-            {slide === 1 && <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644311742/4-dot_uqddh9.png" alt=""></img>}
-            {slide === 2 && <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644311742/3-dot_lxaklk.png" alt=""></img>}
-            {slide === 3 && <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644311742/2-dot_ty1lwi.png" alt=""></img>}
-          </div>
-          <div>
+
+          <div className="c-onboarding__btn">
             <Link to="/login" style={{ textDecoration: "none" }}>
               <p>saltar</p>
             </Link>
             {slide < 3 ? (
-              <button onClick={() => setSlide(slide + 1)}>siguiente</button>
+              <button onClick={() => setSlide(slide + 1)}><p>siguiente</p> <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644360545/next_rfplfj.png" alt="arrow next" /> </button>
             ) : (
               <Link to="/login" style={{ textDecoration: "none" }}>
                 <p>terminar</p>
