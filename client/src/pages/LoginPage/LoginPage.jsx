@@ -50,7 +50,7 @@ const LoginPage = () => {
           {error && <span>{error}</span>}
           <p>¿Olvidaste tu contraseña?</p>
 
-          <button type="submit">Entrar</button>
+          <button type="submit" className= "button">Entrar</button>
         </form>
 
         <div className="loginPage__info">
