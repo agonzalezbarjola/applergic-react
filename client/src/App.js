@@ -7,6 +7,8 @@ import RegisterPage from "./pages/ResgisterPage/RegisterPage";
 import HomePage from "./pages/HomePage/HomePage";
 import Rated from "./components/Rated/Rated";
 import ScannerPage from "./pages/ScannerPage/ScannerPage";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   const [Jwt, setJwt] = useState(localStorage.getItem("token") || null);
@@ -15,12 +17,35 @@ function App() {
       <div>
         <Router>
           <Routes>
-            <Route path="/" element={<OnboardingPage />} />
+            <Route exact path="/" element={<OnboardingPage />} />
+            
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/rated" element={<Rated />} />
-            <Route path="/scanner" element={<ScannerPage />} />
+            <Route
+              path="/home"
+              element={
+                <RequireAuth>
+                  <HomePage />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/rated"
+              element={
+                <RequireAuth>
+                  <Rated />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/scanner"
+              element={
+                <RequireAuth>
+                  <ScannerPage />
+                </RequireAuth>
+              }
+            />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
         </Router>
       </div>
