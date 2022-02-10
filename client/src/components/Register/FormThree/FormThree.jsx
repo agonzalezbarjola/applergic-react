@@ -69,7 +69,10 @@ function FormThree({ props, props2 }) {
 
       <div className="c-formthree__abc">
         <div className="c-formthree__abc--letter">
-          <p>Acceso rÃ¡pido.</p>
+          <div className="absolute">
+          <p>Acceso rápido.</p>
+          </div>
+          
           {allergensLetter.map((letter) => {
             return (
               <div className="c-formthree__abc--letter--item" key={letter}>
@@ -84,9 +87,13 @@ function FormThree({ props, props2 }) {
         <form className="form" onSubmit={handleSubmit(setAllergyConfirm)}>
           {allergensLetter.map((letter) => {
             return (
-              <div>
-                <p>{letter}</p> 
-                <div id={`#` + letter}>
+              <div className="c-formthree__form--list">
+                <div className="c-formthree__form--list--item">
+                <p>{letter}</p>
+                <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532629/28889406-50F4-494C-B080-8E7BBA8418BE_q21yo2.png" alt="arrow top" /> 
+                </div>
+                
+                <div className="c-formthree__form--list--aller" id={`#` + letter}>
                   {allergens.map((allergen) =>
                     allergen.name.charAt(0) === letter ? (
                       <>
@@ -106,7 +113,7 @@ function FormThree({ props, props2 }) {
               </div>
             );
           })}
-          <button type="submit">Guardar</button>
+          <button className="button" type="submit">Guardar</button>
         </form>
       </div>
     </div>
