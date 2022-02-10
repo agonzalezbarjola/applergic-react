@@ -1,0 +1,79 @@
+@import '../../../index.scss';
+
+.c-formthree {
+
+    background: lightblue;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__title {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        padding: 5px 0;
+        background: lightcoral;
+        
+        h2{
+
+            margin: 20px 0px;
+        }
+        p {
+
+            margin: 10px 0px;
+        }
+
+    }
+
+    &__abc{
+
+        display: flex;
+        background: lightgreen;
+        justify-content: center;
+
+        &--letter{
+
+            display: flex;
+            flex-wrap: wrap;
+            background: lightseagreen;
+            width: 250px;
+            height: 250px;
+            justify-content: center;
+            padding: 5px;
+            position: absolute;
+
+            // p {
+            //     position: absolute;
+            //     left: 0;
+            //     right: 0;
+            //     top: 0;
+            //     bottom: 0;
+            //     background: lightgoldenrodyellow;
+            // }
+
+            &--item{
+
+                display: flex;                
+                justify-content: center;
+                align-items: center;
+                padding: 2px;              
+                width: 35px;
+                height: 35px;
+                background: $grey;
+                margin: 10px;
+                border-radius: 50%;
+
+                a{
+                    display: flex;                   
+                    margin: 0;
+                    padding: 0;
+                    text-decoration: none;
+                    color: #ffff;
+                }
+            }
+
+        }
+    }
+} 
