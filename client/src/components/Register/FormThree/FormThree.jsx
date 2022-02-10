@@ -82,7 +82,7 @@ function FormThree({ props, props2 }) {
           {allergensLetter.map((letter) => {
             return (
               <div>
-                {/* <p>{letter}</p> */}
+                <p>{letter}</p> 
                 <div id={`#` + letter}>
                   {allergens.map((allergen) =>
                     allergen.name.charAt(0) === letter ? (
