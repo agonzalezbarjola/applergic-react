@@ -5,11 +5,11 @@ import Confirmation from "./Confirmation/Confirmation";
 import "./FormThree.scss";
 
 function FormThree({ props, props2 }) {
+  //estado que tiene la respuesta del get allergens
   const [allergens, setAllergens] = useState([]);
   const [allergens2, setAllergens2] = useState([]);
 
   const { register, handleSubmit } = useForm();
-  //console.log(localStorage.getItem("token"));
   const getAllergens = async () => {
     const res = await axios("http://localhost:8000/api/allergens", {
       headers: {
@@ -28,13 +28,6 @@ function FormThree({ props, props2 }) {
     getAllergens();
   }, []);
 
-  // const onClickForm = (formData) => {
-  //   props({
-  //     ...props2,
-  //     allergens: formData.allergens,
-  //   });
-  // };
-
   const allergensLetter = [];
 
   const getLetterAllergen = () => {
@@ -46,17 +39,16 @@ function FormThree({ props, props2 }) {
         }
       });
   };
-
   getLetterAllergen();
 
   const setAllergyConfirm = (data) => {
     const arraySplit = data.allergens.map((item) => item.split("-"));
     console.log(arraySplit);
-    const arrayToSet = arraySplit.map((item, index) =>
-      item.map((item2) => item2)
-    );
-    console.log(arrayToSet);
-    setAllergens2(arrayToSet);
+    // const arrayToSet = arraySplit.map((item, index) =>
+    //   item.map((item2) => item2)
+    // );
+    // console.log(arrayToSet);
+    setAllergens2(arraySplit);
   };
 
   console.log(allergens2);

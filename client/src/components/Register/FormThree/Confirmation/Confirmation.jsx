@@ -17,6 +17,7 @@ function Confirmation({ props, props2, props3 }) {
 
     axios
       .post("http://localhost:8000/api/users/register", {
+        image: props2.image,
         name: props2.name,
         email: props2.email,
         phone: props2.phone,
@@ -39,22 +40,22 @@ function Confirmation({ props, props2, props3 }) {
       });
   };
 
-  const getAllergens = async () => {
-    const res = await axios("http://localhost:8000/api/allergens", {
-      headers: {
-        Authorization: {
-          toString() {
-            return `Bearer ${localStorage.getItem("token")}`;
-          },
-        },
-      },
-    });
+  // const getAllergens = async () => {
+  //   const res = await axios("http://localhost:8000/api/allergens", {
+  //     headers: {
+  //       Authorization: {
+  //         toString() {
+  //           return `Bearer ${localStorage.getItem("token")}`;
+  //         },
+  //       },
+  //     },
+  //   });
 
-    setAllergens(res.data);
-  };
-  useEffect(() => {
-    getAllergens();
-  }, []);
+  //   setAllergens(res.data);
+  // };
+  // useEffect(() => {
+  //   getAllergens();
+  // }, []);
   return (
     <div>
       <h2>Confirma tu selección.</h2>
