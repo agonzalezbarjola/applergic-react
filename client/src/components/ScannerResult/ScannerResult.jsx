@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 function ScannerResult({ props, props2 }) {
-  let coincidence; 
+  let coincidence;
   let text;
   console.log(props2);
-  if (props2.length) { 
+  if (props2.length) {
     const productArray = props2[0].allergens;
 
     const userArray = props.allergens;
@@ -25,10 +25,9 @@ function ScannerResult({ props, props2 }) {
     verify();
     coincidence =
       allArray.length !== productArray.length + userArray.length ? true : false;
-    
+
     console.log(allArray, coincidence);
-    
-  }else{
+  } else {
     text = "No hay datos para mostrar";
   }
   console.log(text);
@@ -48,9 +47,7 @@ function ScannerResult({ props, props2 }) {
         {coincidence ? (
           <p>hay alergia</p>
         ) : text ? (
-          <p>
-            No hay datos para mostrar
-          </p>
+          <p>No hay datos para mostrar</p>
         ) : (
           <p>Es apto para ti</p>
         )}
@@ -58,7 +55,8 @@ function ScannerResult({ props, props2 }) {
         <div>
           <div>
             <img src="" alt=""></img>
-            <img src={props2[0].image} alt=""></img>
+
+            {props2 && <img src={props2[0].image} alt=""></img>}
           </div>
 
           <div>
@@ -77,11 +75,12 @@ function ScannerResult({ props, props2 }) {
           </div>
         </div>
         <div>
-          <h3>{props2[0].name}</h3>
-          <h4>{props2[0].brand}</h4>
+        {props2 && <h3>{props2[0].name}</h3>}
+        {props2 && <h4>{props2[0].brand}</h4>}
+        {props2 && 
           <p>
             <strong>Ingredientes:</strong> {props2[0].ingredients}
-          </p>
+          </p>}
         </div>
         <button>Escanea otro producto</button>
       </div>
