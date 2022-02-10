@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./FormOne.scss";
 function FormOne({ props, props2 }) {
   const { register, handleSubmit } = useForm();
+  const [img, setImg] = useState([]);
 
   const onClickForm = (formData) => {
     if (!formData.image.length) {
@@ -14,10 +15,11 @@ function FormOne({ props, props2 }) {
       email: formData.email,
       phone: formData.phone,
       password: formData.password,
-
       image: formData.image,
     });
   };
+
+ 
 
   return (
     <div className="c-formone">
@@ -36,8 +38,10 @@ function FormOne({ props, props2 }) {
           </label>
           <input
             type="file"
+            alt=""
             name="photo"
             id="upload-photo"
+            
             {...register("image")}
           />
         </div>
