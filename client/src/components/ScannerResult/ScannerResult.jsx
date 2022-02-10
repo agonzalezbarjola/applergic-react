@@ -3,17 +3,7 @@ import axios from "axios";
 function ScannerResult({ props }) {
   const product = props[0];
   const [user, setUser] = useState([]);
-  const userProduct = user.userDB;
-  console.log(userProduct);
-
-  const haveAllergy = [];
-
-  for (const item of userProduct.allergens) {
-    !product.allergens.includes(item) && haveAllergy.push(item) 
-    console.log(haveAllergy);
-  }
-
-
+  const [check, setCheck] = useState([]);
 
   const getUserById = async () => {
     const idStorage = JSON.parse(localStorage.getItem("id"));
@@ -26,7 +16,12 @@ function ScannerResult({ props }) {
         },
       },
     });
+    const haveAllergy = [];
+    for (const item of res.data.userDB.allergens) {
+      product.allergens.includes(item) && haveAllergy.push(item);
+    }
 
+    setCheck(haveAllergy);
     setUser(res.data);
   };
 
@@ -35,6 +30,7 @@ function ScannerResult({ props }) {
   }, []);
   console.log("producto:", props);
   console.log("usuario:", user);
+  console.log("check:", check);
   return (
     <div>
       <div>
@@ -45,7 +41,8 @@ function ScannerResult({ props }) {
         <h1>Aqui tienes el resultado</h1>
       </div>
       <div>
-        <p>{haveAllergy.length}</p>
+        {check.length ? <p>hay alergia</p> : !check.length ? <p>Es apto para ti</p> : <p>3</p>}
+
         <div>
           <div>
             <img src="" alt=""></img>
