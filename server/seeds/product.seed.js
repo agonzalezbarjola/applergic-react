@@ -34,11 +34,11 @@ const Products =[
     },
     {
         name: "Macarrones",
-        brand: "Hacendado",
+        brand: "carrefuuu",
         image: "https://res.cloudinary.com/dkv0drgbb/image/upload/v1644398964/Macarrones_oa8wzd.png",
         allergens:[`6203848cd028adc8cf0eeae8`],
         ingredients:"Sémola de trigo duro",
-        code: "848000006796"
+        code: "3560071015152"
     },
     {
         name: "Leche Desnatada",
@@ -64,7 +64,7 @@ const Products =[
         ingredients:"Carne e hígado de cerdo ibérico (65%). leche descremada. sal. especias. aromas. antioxidante (ascorbato sódico). conservador (nitrito sódico). Sin colorantes ni fécula.",
         code: "8410762120168"
 
-    }
+    },
 
 ];
 
