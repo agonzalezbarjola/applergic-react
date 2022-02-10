@@ -2,33 +2,18 @@ import React, { useEffect, useState } from "react";
 import "./ScannerPage.scss";
 import axios from "axios";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
+import Prueba from "../../components/Prueba/Prueba";
 import ScannerResult from "../../components/ScannerResult/ScannerResult";
 function ScannerPage() {
-  const [data, setData] = React.useState("Not Found");
-  const [product, setProduct] = React.useState([]);
+  const [data, setData] = React.useState("Not found");
   const [text, setText] = React.useState("codigo de barras");
-  console.log(data);
-  const getProduct = async () => {
-    const res = await axios(`http://localhost:8000/api/products/${data}`, {
-      headers: {
-        Authorization: {
-          toString() {
-            return `Bearer ${localStorage.getItem("token")}`;
-          },
-        },
-      },
-    });
 
-    setProduct(res.data);
-  };
+  // console.log(data);
+  
 
-  useEffect(() => {
-    getProduct();
-  }, [data]);
-  console.log(product);
   return (
     <>
-      {!product.length ? (
+      {data === "Not found" ? (
         <div className="c-scannerPage">
           <div className="c-scannerPage__title">
             <div className="navbar__close">
@@ -53,8 +38,7 @@ function ScannerPage() {
                 height={200}
                 onUpdate={(err, result) => {
                   if (result) setData(result.text);
-
-                  // else setData("Not Found");
+                  //else setData("Not Found");
                 }}
               />
             </div>
@@ -84,7 +68,7 @@ function ScannerPage() {
           </div>
         </div>
       ) : (
-        <ScannerResult props={product}/>
+        <Prueba props={data} />
       )}
     </>
   );

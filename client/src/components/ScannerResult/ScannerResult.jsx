@@ -1,36 +1,40 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-function ScannerResult({ props }) {
-  const product = props[0];
-  const [user, setUser] = useState([]);
-  const [check, setCheck] = useState([]);
 
-  const getUserById = async () => {
-    const idStorage = JSON.parse(localStorage.getItem("id"));
-    const res = await axios(`http://localhost:8000/api/users/${idStorage}`, {
-      headers: {
-        Authorization: {
-          toString() {
-            return `Bearer ${localStorage.getItem("token")}`;
-          },
-        },
-      },
-    });
-    const haveAllergy = [];
-    for (const item of res.data.userDB.allergens) {
-      product.allergens.includes(item) && haveAllergy.push(item);
-    }
+function ScannerResult({ props, props2 }) {
+  let coincidence; 
+  let text;
+  console.log(props2);
+  if (props2.length) { 
+    const productArray = props2[0].allergens;
 
-    setCheck(haveAllergy);
-    setUser(res.data);
-  };
+    const userArray = props.allergens;
+    const allArray = [];
 
-  useEffect(() => {
-    getUserById();
-  }, []);
-  console.log("producto:", props);
-  console.log("usuario:", user);
-  console.log("check:", check);
+    const verify = () => {
+      for (const item of productArray) {
+        if (!allArray.includes(item)) {
+          allArray.push(item);
+        }
+      }
+      for (const item of userArray) {
+        if (!allArray.includes(item)) {
+          allArray.push(item);
+        }
+      }
+    };
+    verify();
+    coincidence =
+      allArray.length !== productArray.length + userArray.length ? true : false;
+    
+    console.log(allArray, coincidence);
+    
+  }else{
+    text = "No hay datos para mostrar";
+  }
+  console.log(text);
+  console.log(props);
+  console.log(props2);
+
   return (
     <div>
       <div>
@@ -41,12 +45,20 @@ function ScannerResult({ props }) {
         <h1>Aqui tienes el resultado</h1>
       </div>
       <div>
-        {check.length ? <p>hay alergia</p> : !check.length ? <p>Es apto para ti</p> : <p>3</p>}
+        {coincidence ? (
+          <p>hay alergia</p>
+        ) : text ? (
+          <p>
+            No hay datos para mostrar
+          </p>
+        ) : (
+          <p>Es apto para ti</p>
+        )}
 
         <div>
           <div>
             <img src="" alt=""></img>
-            <img src={product.image} alt=""></img>
+            <img src={props2[0].image} alt=""></img>
           </div>
 
           <div>
@@ -65,10 +77,10 @@ function ScannerResult({ props }) {
           </div>
         </div>
         <div>
-          <h3>{product.name}</h3>
-          <h4>{product.brand}</h4>
+          <h3>{props2[0].name}</h3>
+          <h4>{props2[0].brand}</h4>
           <p>
-            <strong>Ingredientes:</strong> {product.ingredients}
+            <strong>Ingredientes:</strong> {props2[0].ingredients}
           </p>
         </div>
         <button>Escanea otro producto</button>
