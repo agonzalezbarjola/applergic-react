@@ -54,9 +54,19 @@ function ScannerResult({ props, props2 }) {
 
         <div>
           <div>
-            <img src="" alt=""></img>
+            {/* <img {coincidence ? ( src="url rojo" ) : text ? ( src="url amarilla") : (src="verde")}/>  */}
 
-            {props2 && <img src={props2[0].image} alt=""></img>}
+            {coincidence ? (
+          <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-rojo_prrt2l.png"/>
+        ) : text ? (
+          <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-amarillo_lctbno.png"/>
+        ) : (
+          <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-verde_lruwuu.png"/>
+        )}
+
+
+
+            {props2 && <img className="Absolute" src={props2[0].image} alt=""></img>}
           </div>
 
           <div>
