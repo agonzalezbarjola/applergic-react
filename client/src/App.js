@@ -3,12 +3,12 @@ import OnboardingPage from "./pages/OnboardingPage/OnboardingPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import { JwtContext } from "./shared/JwtContext/JwtContext";
 import { useState } from "react";
-import RegisterPage from "./pages/ResgisterPage/RegisterPage"
+import RegisterPage from "./pages/ResgisterPage/RegisterPage";
 import HomePage from "./pages/HomePage/HomePage";
 import Rated from "./components/Rated/Rated";
+import ScannerPage from "./pages/ScannerPage/ScannerPage";
 
 function App() {
-
   const [Jwt, setJwt] = useState(localStorage.getItem("token") || null);
   return (
     <JwtContext.Provider value={{ Jwt, setJwt }}>
@@ -20,6 +20,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/rated" element={<Rated />} />
+            <Route path="/scanner" element={<ScannerPage />} />
           </Routes>
         </Router>
       </div>
