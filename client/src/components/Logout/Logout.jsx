@@ -1,0 +1,22 @@
+import React, { useContext } from "react";
+import { JwtContext } from "../../shared/JwtContext/JwtContext";
+import { useNavigate, Link, Navigate } from "react-router-dom";
+function Logout() {
+  const { Jwt, setJwt } = useContext(JwtContext);
+  const navigate = useNavigate();
+  Jwt && localStorage.removeItem("token");
+  setTimeout(() => {
+    navigate("/login");
+  }, 3000);
+
+  return (
+    <div>
+      <img
+        src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532203/loading_yhwlmu.gif"
+        alt=""
+      ></img>
+    </div>
+  );
+}
+
+export default Logout;

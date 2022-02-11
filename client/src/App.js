@@ -9,6 +9,7 @@ import Rated from "./components/Rated/Rated";
 import ScannerPage from "./pages/ScannerPage/ScannerPage";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import NotFound from "./pages/NotFound/NotFound";
+import Logout from "./components/Logout/Logout";
 
 function App() {
   const [Jwt, setJwt] = useState(localStorage.getItem("token") || null);
@@ -18,7 +19,7 @@ function App() {
         <Router>
           <Routes>
             <Route exact path="/" element={<OnboardingPage />} />
-            
+
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route
@@ -42,6 +43,14 @@ function App() {
               element={
                 <RequireAuth>
                   <ScannerPage />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/logout"
+              element={
+                <RequireAuth>
+                  <Logout />
                 </RequireAuth>
               }
             />

@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./Dropdown.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { JwtContext } from "../../shared/JwtContext/JwtContext";
+
 
 function Dropdown() {
+  
+  const navigate = useNavigate();
   const dropMenu = () => {
     const drop$$ = document.querySelector(".navbar");
     drop$$.classList.toggle("dropmenu")
   }
+
+  const logout = () => {
+    navigate("/login");
+  }
+
   return (
     <nav className="navbar">
 
@@ -57,7 +66,7 @@ function Dropdown() {
         </div>
 
         <div className="navbar__menu--btn">
-          <NavLink  to={"/logout"}>
+          <NavLink  to={"/logout"} onClick={()=>logout}> 
             <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644354132/Exit_gdef1g.png" alt="" />
             <p>Salir</p>
           </NavLink>
