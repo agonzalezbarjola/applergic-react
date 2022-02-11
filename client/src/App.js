@@ -20,8 +20,8 @@ function App() {
           <Routes>
             <Route exact path="/" element={<OnboardingPage />} />
 
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            {!Jwt && <Route path="/login" element={<LoginPage />} />}
+            {!Jwt && <Route path="/register" element={<RegisterPage />} />}
             <Route
               path="/home"
               element={

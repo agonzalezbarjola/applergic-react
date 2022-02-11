@@ -1,18 +1,24 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
+import React, { useEffect, useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 function NotFound() {
   const [Jwt, setJwt] = useState(localStorage.getItem("token") || null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(Jwt);
+    setTimeout(() => {
+      Jwt && navigate("/home");
+      !Jwt && navigate("/login")
+    }, 1000);
+  }, []);
 
   return (
     <div>
-      <h1>404 - Not Found!</h1>
-      {Jwt ? (
-        <Link to="/home">Go Home</Link>
-      ) : (
-        <Link to="/login">Please login first!</Link>
-      )}
+      <img
+        src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532203/loading_yhwlmu.gif"
+        alt=""
+      ></img>
     </div>
   );
 }

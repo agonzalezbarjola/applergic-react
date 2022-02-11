@@ -1,13 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { JwtContext } from "../../shared/JwtContext/JwtContext";
 import { useNavigate, Link, Navigate } from "react-router-dom";
 function Logout() {
   const { Jwt, setJwt } = useContext(JwtContext);
   const navigate = useNavigate();
   Jwt && localStorage.removeItem("token");
-  setTimeout(() => {
-    navigate("/login");
-  }, 3000);
+  
+  useEffect(()=>{
+    setTimeout(() => {
+      setJwt(false);
+    console.log(Jwt);
+    !Jwt && navigate("/login");
+    }, 1000);
+    
+  },[])
+    
+  
 
   return (
     <div>
