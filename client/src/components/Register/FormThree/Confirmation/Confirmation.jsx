@@ -5,14 +5,6 @@ function Confirmation({ props, props2, props3, props4 }) {
   const [allergens, setAllergens] = useState([]);
   console.log(props3);
 
-  const goBack = ( ) => {
-
-    const back$$ = document.queryselector(".c-confirmation");
-
-    back$$.classList.toggle("back")
-    props4();
-
-   };
 
   
 
@@ -49,6 +41,11 @@ function Confirmation({ props, props2, props3, props4 }) {
       });
   };
 
+  const handleBack = () => {
+
+    props4();
+  } 
+
   // const getAllergens = async () => {
   //   const res = await axios("http://localhost:8000/api/allergens", {
   //     headers: {
@@ -68,7 +65,7 @@ function Confirmation({ props, props2, props3, props4 }) {
   return (
     <div className="c-confirmation">
       <div className="c-confirmation__main">
-        <div onClick={goBack} className="c-confirmation__main--close">
+        <div onClick={handleBack} className="c-confirmation__main--close">
           <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png" alt="arrow close" />
         </div>
         <h2>Confirma tu selección.</h2>
@@ -87,7 +84,7 @@ function Confirmation({ props, props2, props3, props4 }) {
         </div>
 
         <div className="c-confirmation__main--btn">
-          <p className="c-confirmation__main--btn--item"  onClick={goBack}> Añadir nuevos </p>          
+          <p className="c-confirmation__main--btn--item"  onClick={handleBack}> Añadir nuevos </p>          
         </div>
         
         

@@ -8,11 +8,16 @@ function FormThree({ props, props2 }) {
   //estado que tiene la respuesta del get allergens
   const [allergens, setAllergens] = useState([]);
   const [allergens2, setAllergens2] = useState([]);
-  const [ goBack, setGoback] = useState(false);
+ 
 
-  const goBackHandler = () => {
+  const showConfirmation = () => {
 
-    setGoback(!goBack)
+    const back$$ = document.querySelector(".c-confirmation");
+
+    back$$.classList.toggle("showConfirmation")
+    console.log("funciona")
+
+    
   }
 
   const { register, handleSubmit } = useForm();
@@ -63,9 +68,9 @@ function FormThree({ props, props2 }) {
 
   return (
     <div className="c-formthree">
-      <div className={ !goBack ? "back" : "c-confirmation" } >
-      <Confirmation props={props} props2={props2} props3={allergens2}  props4={goBackHandler}/>
-      </div>
+
+      <Confirmation props={props} props2={props2} props3={allergens2} props4={showConfirmation} />
+      
      
       <div className="c-formthree__title">
         <h2>Ahora selecciona tus alergias e intolerancias.</h2>
@@ -122,7 +127,7 @@ function FormThree({ props, props2 }) {
               </div>
             );
           })}
-          <button className="button" type="submit">Guardar</button>
+          <button onClick={showConfirmation} className="button" type="submit">Guardar</button>
         </form>
       </div>
     </div>
