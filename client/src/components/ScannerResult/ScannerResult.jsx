@@ -1,8 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./ScannerResult.scss";
+import axios from "axios";
 
 function ScannerResult({ props, props2 }) {
+  const [error, setError] = useState()
+
+console.log(props,props2)
+  const addFavorite = () => {
+    axios.patch("http://localhost:8080/api/users/"+ props._id, {
+      fav:[props2[0]._id]
+    }).then(() =>{
+      console.log( "ha funcionado")
+    }).catch(() =>{
+      console.log( "NO FUNCIONA")
+    })
+
+  }
+
+
+
+
+
   let coincidence;
   let text;
   console.log(props2);
@@ -83,15 +102,15 @@ function ScannerResult({ props, props2 }) {
           <div  className="c-scannerresult__imgcontainer--icons">
             <img
               src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326247/favorito_3x_uuzvff.png"
-              alt=""
+              alt="favorite" onClick={addFavorite}
             ></img>
             <img
               src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326248/diario_3x_nsw6xi.png"
-              alt=""
+              alt="diary"
             ></img>
             <img
               src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326247/red_3x_ivwedb.png"
-              alt=""
+              alt="shared"
             ></img>
           </div>
         
