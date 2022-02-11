@@ -13,6 +13,7 @@ import Logout from "./components/Logout/Logout";
 
 function App() {
   const [Jwt, setJwt] = useState(localStorage.getItem("token") || null);
+  const [isLoading, setIsLoading] = useState(true);
   return (
     <JwtContext.Provider value={{ Jwt, setJwt }}>
       <div>
@@ -26,7 +27,7 @@ function App() {
               path="/home"
               element={
                 <RequireAuth>
-                  <HomePage />
+                  <HomePage setIsLoading={setIsLoading} isLoading={isLoading}/>
                 </RequireAuth>
               }
             />
@@ -42,7 +43,7 @@ function App() {
               path="/scanner"
               element={
                 <RequireAuth>
-                  <ScannerPage />
+                  <ScannerPage setIsLoading={setIsLoading} isLoading={isLoading}/>
                 </RequireAuth>
               }
             />

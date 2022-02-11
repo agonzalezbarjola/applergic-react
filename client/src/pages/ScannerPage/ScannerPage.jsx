@@ -7,9 +7,26 @@ import ScannerResult from "../../components/ScannerResult/ScannerResult";
 function ScannerPage() {
   const [data, setData] = React.useState("Not found");
   const [text, setText] = React.useState("codigo de barras");
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const loadData = async () => {
+      await new Promise((r) => setTimeout(r, 2000));
+      setLoading((loading) => !loading);
+    };
+    loadData();
+  }, []);
 
-  // console.log(data);
-  
+  if (loading) {
+    return (
+      <div>
+        {" "}
+        <img
+          src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532203/loading_yhwlmu.gif"
+          alt=""
+        ></img>
+      </div>
+    );
+  }
 
   return (
     <>
