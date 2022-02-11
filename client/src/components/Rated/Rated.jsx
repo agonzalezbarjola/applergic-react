@@ -6,7 +6,16 @@ import { Link } from "react-router-dom";
 
 export default function MyComponent() {
   const [rating, setRating] = useState(0);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const loadData = async () => {
+      await new Promise((r) => setTimeout(r, 2000));
+      setLoading((loading) => !loading);
+    };
+    loadData();
+  }, []);
 
+  
   const postRating = () => {
     axios
       .post("http://localhost:8000/api/ratings/vote", {
@@ -37,6 +46,18 @@ export default function MyComponent() {
   }, [rating]);
 
   console.log(rating);
+
+  if (loading) {
+    return (
+      <div>
+        {" "}
+        <img
+          src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532203/loading_yhwlmu.gif"
+          alt=""
+        ></img>
+      </div>
+    );
+  }
 
   return (
     <div className="c-rated">

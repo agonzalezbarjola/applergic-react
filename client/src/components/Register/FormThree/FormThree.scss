@@ -127,10 +127,12 @@
                 display: flex;
                 flex-wrap: wrap;
 
+                
+
                 label {
 
                     //background: lightgreen;
-                    height: 45px;
+                    height: 35px;
                     border-radius: 100px;
                     display: flex;
                     justify-content: center;
@@ -141,6 +143,17 @@
                     text-transform: capitalize;
                     border: 1px solid $grey;
 
+                }
+
+                input {
+                    display: none;
+
+                    &[type="checkbox"]:checked + label {
+
+                        background: $primaryColor;
+                        color: #fff;
+                        border: none;
+                    }
                 }   
     
             }

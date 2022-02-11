@@ -8,6 +8,12 @@ function FormThree({ props, props2 }) {
   //estado que tiene la respuesta del get allergens
   const [allergens, setAllergens] = useState([]);
   const [allergens2, setAllergens2] = useState([]);
+  const [ goBack, setGoback] = useState(false);
+
+  const goBackHandler = () => {
+
+    setGoback(!goBack)
+  }
 
   const { register, handleSubmit } = useForm();
   const getAllergens = async () => {
@@ -51,12 +57,14 @@ function FormThree({ props, props2 }) {
     setAllergens2(arraySplit);
   };
 
+ 
+
   console.log(allergens2);
 
   return (
     <div className="c-formthree">
-      <div>
-      <Confirmation props={props} props2={props2} props3={allergens2} />
+      <div className={ !goBack ? "back" : "c-confirmation" } >
+      <Confirmation props={props} props2={props2} props3={allergens2}  props4={goBackHandler}/>
       </div>
      
       <div className="c-formthree__title">
@@ -87,23 +95,24 @@ function FormThree({ props, props2 }) {
         <form className="form" onSubmit={handleSubmit(setAllergyConfirm)}>
           {allergensLetter.map((letter) => {
             return (
-              <div className="c-formthree__form--list">
+              <div key={letter} className="c-formthree__form--list">
                 <div className="c-formthree__form--list--item">
-                <p>{letter}</p>
+                <p href={`#`+ letter}>{letter}</p>
                 <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532629/28889406-50F4-494C-B080-8E7BBA8418BE_q21yo2.png" alt="arrow top" /> 
                 </div>
                 
-                <div className="c-formthree__form--list--aller" id={`#` + letter}>
+                <div className= {`c-formthree__form--list--aller`} id={`#` + letter}>
                   {allergens.map((allergen) =>
                     allergen.name.charAt(0) === letter ? (
-                      <>
-                        <label key={allergen._id}>{allergen.name}</label>
-                        <input
+                      <>                        
+                        <input                          
+                          id={`${allergen.name}`}
                           type="checkbox"
                           value={allergen.name + "-" + allergen._id}
                           name={allergen.name}
                           {...register("allergens")}
                         ></input>
+                        <label htmlFor={`${allergen.name}`}  key={allergen._id}>{allergen.name}</label>
                       </>
                     ) : (
                       ""
