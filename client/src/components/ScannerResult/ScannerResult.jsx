@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./ScannerResult.scss";
 
 function ScannerResult({ props, props2 }) {
   let coincidence;
@@ -35,39 +37,48 @@ function ScannerResult({ props, props2 }) {
   console.log(props2);
 
   return (
-    <div>
-      <div>
-        <button>volver</button>
-        <button>x</button>
+    <div className="c-scannerresult">
+      <div className="c-scannerresult__header">
+        <div className="c-scannerresult__header--back">
+          <Link to={"/home"}>
+            {""}
+            <img
+              alt=""
+              src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644332335/volver_3x_nszfrh.png"
+            />{" "}
+            {""}
+            <p>volver</p>
+          </Link>
+        </div>
       </div>
-      <div>
+
+      <div className="c-scannerresult__title">
         <h1>Aqui tienes el resultado</h1>
       </div>
-      <div>
+      <div className="c-scannerresult__text">
         {coincidence ? (
-          <p>hay alergia</p>
+          <p>Este producto <span>NO</span> es apto para tí</p>
         ) : text ? (
-          <p>No hay datos para mostrar</p>
+          <p>Lo sentimos, no hay datos suficientes para poder valorar este producto</p>
         ) : (
-          <p>Es apto para ti</p>
+          <p>Este producto es apto para ti</p>
         )}
-
-        <div>
-          <div>
-            {/* <img {coincidence ? ( src="url rojo" ) : text ? ( src="url amarilla") : (src="verde")}/>  */}
-
+      </div>
+        <div className="c-scannerresult__imgall">
+          <div className="c-scannerresult__imgall--border">
             {coincidence ? (
-          <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-rojo_prrt2l.png"/>
-        ) : text ? (
-          <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-amarillo_lctbno.png"/>
-        ) : (
-          <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-verde_lruwuu.png"/>
-        )}
-
-
-
-            {props2 && <img className="Absolute" src={props2[0].image} alt=""></img>}
-          </div>
+              <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-rojo_prrt2l.png" />
+            ) : text ? (
+              <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-amarillo_lctbno.png" />
+            ) : (
+              <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-verde_lruwuu.png" />
+            )}
+            </div>
+            <div className="c-scannerresult__imgall--product">
+            {props2 && (
+              <img className="Absolute" src={props2[0].image} alt=""></img>
+            )}
+              </div> 
 
           <div>
             <img
@@ -83,17 +94,20 @@ function ScannerResult({ props, props2 }) {
               alt=""
             ></img>
           </div>
-        </div>
-        <div>
-        {props2 && <h3>{props2[0].name}</h3>}
-        {props2 && <h4>{props2[0].brand}</h4>}
-        {props2 && 
-          <p>
-            <strong>Ingredientes:</strong> {props2[0].ingredients}
-          </p>}
-        </div>
-        <button>Escanea otro producto</button>
+        
+     
+        
       </div>
+      <div>
+          {props2 && <h3>{props2[0].name}</h3>}
+          {props2 && <h4>{props2[0].brand}</h4>}
+          {props2 && (
+            <p>
+              <strong>Ingredientes:</strong> {props2[0].ingredients}
+            </p>
+          )}
+        </div>
+      <button>Escanea otro producto</button>
     </div>
   );
 }

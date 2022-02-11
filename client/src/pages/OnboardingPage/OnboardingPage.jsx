@@ -55,7 +55,7 @@ function OnboardingPage() {
               alt="logo Applergic"
             />
           </div>
-          {/* <LogoAnimation /> */}
+         
         </div>
       )}
       {!splash && (
