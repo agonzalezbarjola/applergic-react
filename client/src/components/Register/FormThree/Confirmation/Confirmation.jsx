@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Confirmation.scss";
-function Confirmation({ props, props2, props3 }) {
+function Confirmation({ props, props2, props3, props4 }) {
   const [allergens, setAllergens] = useState([]);
   console.log(props3);
 
-  const goBack = () => { };
+  const goBack = ( ) => {
+
+    const back$$ = document.queryselector(".c-confirmation");
+
+    back$$.classList.toggle("back")
+    props4();
+
+   };
+
+  
 
   const onClickForm = () => {
     const finalData = [];
@@ -59,7 +68,7 @@ function Confirmation({ props, props2, props3 }) {
   return (
     <div className="c-confirmation">
       <div className="c-confirmation__main">
-        <div className="c-confirmation__main--close">
+        <div onClick={goBack} className="c-confirmation__main--close">
           <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png" alt="arrow close" />
         </div>
         <h2>Confirma tu selección.</h2>
@@ -76,8 +85,13 @@ function Confirmation({ props, props2, props3 }) {
           {props3.map((item, index) => <p>{item[0]}</p>)}
           
         </div>
-        <button onClick={goBack}>Añadir nuevos</button>
-        <button onClick={onClickForm}>Confirmar</button>
+
+        <div className="c-confirmation__main--btn">
+          <p className="c-confirmation__main--btn--item"  onClick={goBack}> Añadir nuevos </p>          
+        </div>
+        
+        
+        <button className="button" onClick={onClickForm}>Confirmar</button>
       </div>
     </div>
   );
