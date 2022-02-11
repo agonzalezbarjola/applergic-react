@@ -49,10 +49,7 @@ const Allergens = [
   },
   {
     name: "gluten",
-  },  
-  {
-    name: "huevos",
-  },  
+  },     
   {
     name: "maiz",
   },
