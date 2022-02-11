@@ -35,7 +35,7 @@ function RegisterPage() {
         {pagination === 1 && <FormOne props={addData} props2={register} />}
         {pagination === 2 && <FormTwo props={addData} props2={register} />}
         {pagination === 3 && <FormThree props={addData} props2={register}/>}
-        {pagination === 4 && <FormFour />}
+        {pagination === 4 && <FormFour props={register}/>}
       </div>
 
     </div>
