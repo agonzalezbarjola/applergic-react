@@ -16,9 +16,9 @@ const getRating = async (req, res, next) => {
   
   const postRating  = async (req, res, next) => {
     try {
-        const newRating = new User(req.body)
+        const newRating = new Rating(req.body)
         const ratingDB = await newRating.save()
-        return res.status(201).json({ rating: ratingDB.rating, email: ratingDB.user })
+        return res.status(201).json({ rating: ratingDB.rating })
 
     } catch (error) {
         return next(setError(404, "Rating not sent"));

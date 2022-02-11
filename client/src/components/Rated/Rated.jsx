@@ -1,14 +1,41 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import "./Rated.scss";
 import { Rating } from "react-simple-star-rating";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function MyComponent() {
   const [rating, setRating] = useState(0);
 
+  const postRating = () => {
+    axios
+      .post("http://localhost:8000/api/ratings/vote", {
+        rating: rating,
+      }, {
+        headers: {
+          'Authorization': {
+            toString () {
+                return `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+        }
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   const handleRating = (rate) => {
     setRating(rate);
   };
+
+  useEffect(() => {
+    postRating();
+  }, [rating]);
+
   console.log(rating);
 
   return (
@@ -28,7 +55,6 @@ export default function MyComponent() {
       </div>
 
       <div className="c-rated__hero">
-        
         <img
           src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644261304/logoApplergic_laexqz.png"
           alt=""

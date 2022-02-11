@@ -47,6 +47,7 @@ app.use(express.urlencoded({ limit: "5mb", extended: true }));
 app.use("/api/users", UserRoutes);
 app.use("/api/products", ProductRoutes);
 app.use("/api/allergens", AllergenRoutes);
+app.use("/api/ratings", RatingRoutes);
 app.use("/api", (req, res, next) => {
   return res.json("Bienvenida-Api");
 });
