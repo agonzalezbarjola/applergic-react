@@ -64,8 +64,8 @@ function ScannerResult({ props, props2 }) {
           <p>Este producto es apto para ti</p>
         )}
       </div>
-        <div className="c-scannerresult__imgall">
-          <div className="c-scannerresult__imgall--border">
+        <div className="c-scannerresult__imgcontainer">
+          <div className="c-scannerresult__imgcontainer--border">
             {coincidence ? (
               <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-rojo_prrt2l.png" />
             ) : text ? (
@@ -74,13 +74,13 @@ function ScannerResult({ props, props2 }) {
               <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-verde_lruwuu.png" />
             )}
             </div>
-            <div className="c-scannerresult__imgall--product">
+            <div className="c-scannerresult__imgcontainer--product">
             {props2 && (
               <img className="Absolute" src={props2[0].image} alt=""></img>
             )}
               </div> 
 
-          <div>
+          <div  className="c-scannerresult__imgcontainer--icons">
             <img
               src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326247/favorito_3x_uuzvff.png"
               alt=""
@@ -97,8 +97,8 @@ function ScannerResult({ props, props2 }) {
         
      
         
-      </div>
-      <div>
+      </div >
+      <div className="c-scannerresult__info">
           {props2 && <h3>{props2[0].name}</h3>}
           {props2 && <h4>{props2[0].brand}</h4>}
           {props2 && (
@@ -106,8 +106,10 @@ function ScannerResult({ props, props2 }) {
               <strong>Ingredientes:</strong> {props2[0].ingredients}
             </p>
           )}
-        </div>
+        </div >
+        <div className="c-scannerresult__btn">
       <button>Escanea otro producto</button>
+      </div>
     </div>
   );
 }

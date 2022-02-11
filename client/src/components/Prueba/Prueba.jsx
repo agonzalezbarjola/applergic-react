@@ -57,7 +57,7 @@ function Prueba({ props }) {
       {isFetched && isFetched2 && (
         <ScannerResult props={user} props2={product} props3={isFetched} />
       )}
-      <h1>Espera un poco</h1>
+      
     </>
   );
 }
