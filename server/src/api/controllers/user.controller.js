@@ -75,5 +75,25 @@ const getAllUsers = async (req, res, next) => {
     }
 }
 
+const patchUser = async (req, res, next)=>{
+    try {
+        const { id } = req.params
+        const patchUser = new User(req.body, id)
+        patchUser._id = id
+        if( req.product) {
+            patchUser.product = req.product.patch
+        }
+        const userDB = await User.findByIdAndUpdate(id, patchUser)
+        if (!userDB) {
+            return next(setError(404, 'product not found'))
+        }
+        if (userDB.product) deleteFile(userDB.product)
+        return res.status(200).json({ new: patchUser , old: userDB})
+    }
+     catch(error) {
+         return next(setError(500, 'User patch server error'))
+     }
+}
+
 module.exports = {
-    postNewUser, loginUser, logoutUser, getUser, getAllUsers }
+    postNewUser, loginUser, logoutUser, getUser, getAllUsers, patchUser }
