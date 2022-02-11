@@ -3,19 +3,12 @@
 
 .c-confirmation {
 
-    background: lightcoral;
+    background: #ffff;
     height: 100vh;
     display: none;
     position: absolute;
+    justify-content: center;
     top: 0;
-    
-    
-
-    .back {
-
-        display: none !important;
-
-    }
 
     &__main{
 
@@ -150,7 +143,7 @@
 
 .showConfirmation {
     
-    background: lightcoral;
+   // background: lightcoral;
     height: 100vh;
     display: flex;
     flex-direction: column;

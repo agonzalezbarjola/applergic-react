@@ -8,16 +8,19 @@ function FormThree({ props, props2 }) {
   //estado que tiene la respuesta del get allergens
   const [allergens, setAllergens] = useState([]);
   const [allergens2, setAllergens2] = useState([]);
- 
+
 
   const showConfirmation = () => {
 
     const back$$ = document.querySelector(".c-confirmation");
+    const hiddenForm$$ = document.querySelector(".show-c-formtrhee")
 
     back$$.classList.toggle("showConfirmation")
+    hiddenForm$$.classList.toggle("hidden")
+
     console.log("funciona")
 
-    
+
   }
 
   const { register, handleSubmit } = useForm();
@@ -62,7 +65,7 @@ function FormThree({ props, props2 }) {
     setAllergens2(arraySplit);
   };
 
- 
+
 
   console.log(allergens2);
 
@@ -70,65 +73,68 @@ function FormThree({ props, props2 }) {
     <div className="c-formthree">
 
       <Confirmation props={props} props2={props2} props3={allergens2} props4={showConfirmation} />
-      
-     
-      <div className="c-formthree__title">
-        <h2>Ahora selecciona tus alergias e intolerancias.</h2>
-        <p>
-          Los elementos marcados seran identificados en tus busquedas como
-          peligrosos para ti.
-        </p>
-      </div>
 
-      <div className="c-formthree__abc">
-        <div className="c-formthree__abc--letter">
-          <div className="absolute">
-          <p>Acceso rápido.</p>
-          </div>
-          
-          {allergensLetter.map((letter) => {
-            return (
-              <div className="c-formthree__abc--letter--item" key={letter}>
-                <a href={`#` + letter}>{letter}</a>
-              </div>
-            );
-          })}
+      <div className="show-c-formtrhee">
+
+
+        <div className="c-formthree__title">
+          <h2>Ahora selecciona tus alergias e intolerancias.</h2>
+          <p>
+            Los elementos marcados seran identificados en tus busquedas como
+            peligrosos para ti.
+          </p>
         </div>
-      </div>
 
-      <div className="c-formthree__form">
-        <form className="form" onSubmit={handleSubmit(setAllergyConfirm)}>
-          {allergensLetter.map((letter) => {
-            return (
-              <div key={letter} className="c-formthree__form--list">
-                <div className="c-formthree__form--list--item">
-                <p href={`#`+ letter}>{letter}</p>
-                <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532629/28889406-50F4-494C-B080-8E7BBA8418BE_q21yo2.png" alt="arrow top" /> 
+        <div className="c-formthree__abc">
+          <div className="c-formthree__abc--letter">
+            <div className="absolute">
+              <p>Acceso rápido.</p>
+            </div>
+
+            {allergensLetter.map((letter) => {
+              return (
+                <div className="c-formthree__abc--letter--item" key={letter}>
+                  <a href={`#` + letter}>{letter}</a>
                 </div>
-                
-                <div className= {`c-formthree__form--list--aller`} id={`#` + letter}>
-                  {allergens.map((allergen) =>
-                    allergen.name.charAt(0) === letter ? (
-                      <>                        
-                        <input                          
-                          id={`${allergen.name}`}
-                          type="checkbox"
-                          value={allergen.name + "-" + allergen._id}
-                          name={allergen.name}
-                          {...register("allergens")}
-                        ></input>
-                        <label htmlFor={`${allergen.name}`}  key={allergen._id}>{allergen.name}</label>
-                      </>
-                    ) : (
-                      ""
-                    )
-                  )}
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="c-formthree__form">
+          <form className="form" onSubmit={handleSubmit(setAllergyConfirm)}>
+            {allergensLetter.map((letter) => {
+              return (
+                <div key={letter} className="c-formthree__form--list">
+                  <div className="c-formthree__form--list--item">
+                    <p href={`#` + letter}>{letter}</p>
+                    <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532629/28889406-50F4-494C-B080-8E7BBA8418BE_q21yo2.png" alt="arrow top" />
+                  </div>
+
+                  <div className={`c-formthree__form--list--aller`} id={`#` + letter}>
+                    {allergens.map((allergen) =>
+                      allergen.name.charAt(0) === letter ? (
+                        <>
+                          <input
+                            id={`${allergen.name}`}
+                            type="checkbox"
+                            value={allergen.name + "-" + allergen._id}
+                            name={allergen.name}
+                            {...register("allergens")}
+                          ></input>
+                          <label htmlFor={`${allergen.name}`} key={allergen._id}>{allergen.name}</label>
+                        </>
+                      ) : (
+                        ""
+                      )
+                    )}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-          <button onClick={showConfirmation} className="button" type="submit">Guardar</button>
-        </form>
+              );
+            })}
+            <button onClick={showConfirmation} className="button" type="submit">Guardar</button>
+          </form>
+        </div>
       </div>
     </div>
   );

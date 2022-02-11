@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Confirmation.scss";
 function Confirmation({ props, props2, props3, props4 }) {
   const [allergens, setAllergens] = useState([]);
+  const [error, setError] = useState();
   console.log(props3);
 
 
@@ -11,10 +12,7 @@ function Confirmation({ props, props2, props3, props4 }) {
   const onClickForm = () => {
     const finalData = [];
     props3.map((item, index) => finalData.push(item[1]));
-    props({
-      ...props2,
-      allergens: finalData,
-    });
+    
 
     axios
       .post("http://localhost:8000/api/users/register", {
@@ -35,9 +33,14 @@ function Confirmation({ props, props2, props3, props4 }) {
       })
       .then(function (response) {
         console.log(response);
+        props({
+          ...props2,
+          allergens: finalData,
+        });
       })
       .catch(function (error) {
         console.log(error);
+        setError("Ha habido un error al registrarse intentalo nuevamente!")
       });
   };
 
@@ -87,7 +90,7 @@ function Confirmation({ props, props2, props3, props4 }) {
           <p className="c-confirmation__main--btn--item"  onClick={handleBack}> Añadir nuevos </p>          
         </div>
         
-        
+        {error && <p>{error}</p>}
         <button className="button" onClick={onClickForm}>Confirmar</button>
       </div>
     </div>
