@@ -8,12 +8,12 @@ function ScannerResult({ props, props2 }) {
 
 console.log(props,props2)
   const addFavorite = () => {
-    axios.patch("http://localhost:8080/api/users/"+ props._id, {
+    axios.patch("http://localhost:8000/api/users/"+ props._id, {
       fav:[props2[0]._id]
     }).then(() =>{
-      console.log( "ha funcionado")
+      console.log( "yes found")
     }).catch(() =>{
-      console.log( "NO FUNCIONA")
+      console.log( "Not found")
     })
 
   }
