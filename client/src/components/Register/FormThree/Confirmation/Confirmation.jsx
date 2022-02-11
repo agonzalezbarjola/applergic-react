@@ -5,7 +5,7 @@ function Confirmation({ props, props2, props3 }) {
   const [allergens, setAllergens] = useState([]);
   console.log(props3);
 
-  const goBack = () => {};
+  const goBack = () => { };
 
   const onClickForm = () => {
     const finalData = [];
@@ -57,18 +57,28 @@ function Confirmation({ props, props2, props3 }) {
   //   getAllergens();
   // }, []);
   return (
-    <div>
-      <h2>Confirma tu selección.</h2>
-      <p>
-        A continuacion te resumimos los alimentos registrados como peligrosos
-        para ti
-      </p>
-      <p>Marca para deseleccionar o añadir uno nuevo</p>
-      <div>
-        {props3.map((item, index) => item[0])}
+    <div className="c-confirmation">
+      <div className="c-confirmation__main">
+        <div className="c-confirmation__main--close">
+          <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png" alt="arrow close" />
+        </div>
+        <h2>Confirma tu selección.</h2>
+        <p className="c-confirmation__main--parag1" >
+          A continuacion te resumimos los alimentos registrados como peligrosos
+          para ti.
+        </p>
+
+        <div className="c-confirmation__main--parag2">
+          <p className="c-confirmation__main--parag2--item" >Marca para deseleccionar o añadir uno nuevo.</p>
+        </div>
+
+        <div className="c-confirmation__main--aller">
+          {props3.map((item, index) => <p>{item[0]}</p>)}
+          
+        </div>
         <button onClick={goBack}>Añadir nuevos</button>
+        <button onClick={onClickForm}>Confirmar</button>
       </div>
-      <button onClick={onClickForm}>Confirmar</button>
     </div>
   );
 }
