@@ -4,6 +4,7 @@ import axios from "axios";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import Prueba from "../../components/Prueba/Prueba";
 import ScannerResult from "../../components/ScannerResult/ScannerResult";
+import { Link } from "react-router-dom";
 function ScannerPage() {
   const [data, setData] = React.useState("Not found");
   const [text, setText] = React.useState("codigo de barras");
@@ -25,7 +26,7 @@ function ScannerPage() {
         {" "}
         <img
           src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532203/loading_yhwlmu.gif"
-          alt=""
+          alt="loading img"
         ></img>
       </div>
     );
@@ -37,10 +38,12 @@ function ScannerPage() {
         <div className="c-scannerPage">
           <div className="c-scannerPage__title">
             <div className="c-scannerPage__title--close">
-              <img
-                src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png"
-                alt="exit"
-              />
+              <Link to="/home">
+                <img
+                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png"
+                  alt="exit"
+                />
+              </Link>
             </div>
             <div className="c-scannerPage__title--text">
               <h1>Escaneando...</h1>

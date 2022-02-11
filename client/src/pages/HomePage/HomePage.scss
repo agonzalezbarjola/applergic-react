@@ -19,12 +19,22 @@
   
       width: 45px;
       margin-left: 10px;
+
+      &:hover {
+
+        cursor: pointer;
+      }
     }
   
     &--info {
   
       width: 40px;
       margin-right: 10px;
+
+      &:hover {
+
+        cursor: pointer;
+      }
     }
   
     
@@ -73,7 +83,12 @@
         color: #ffffff;
         font-weight: 600;
         font-size: 16px;
-        margin: 10px 0;   
+        margin: 10px 0;
+        
+        &:hover {
+
+          cursor: pointer;
+        }
 
         
         img{
@@ -87,6 +102,7 @@
       &-scan {
 
         background: $secondaryColor;
+
       }
 
       &-serch {

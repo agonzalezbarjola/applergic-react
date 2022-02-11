@@ -41,7 +41,7 @@ function HomePage() {
         <img
           className="homepage__header--burger"
           src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644328277/CBFCD905-C712-401A-8FF1-7B5C8274A64A_bfmfk3.png"
-          alt="dropdown"
+          alt="burgerMenu"
           onClick={dropMenu}
         />
         <img
