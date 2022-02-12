@@ -10,56 +10,65 @@ import ScannerPage from "./pages/ScannerPage/ScannerPage";
 import RequireAuth from "./components/RequireAuth/RequireAuth";
 import NotFound from "./pages/NotFound/NotFound";
 import Logout from "./components/Logout/Logout";
-
+import { DiaryListContext } from "./shared/DiaryListContext/DiaryListContext";
 function App() {
   const [Jwt, setJwt] = useState(localStorage.getItem("token") || null);
+  const [diaryList, setDiaryList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   return (
-    <JwtContext.Provider value={{ Jwt, setJwt }}>
-      <div>
-        <Router>
-          <Routes>
-            <Route exact path="/" element={<OnboardingPage />} />
+    <DiaryListContext.Provider value={{ diaryList, setDiaryList }}>
+      <JwtContext.Provider value={{ Jwt, setJwt }}>
+        <div>
+          <Router>
+            <Routes>
+              <Route exact path="/" element={<OnboardingPage />} />
 
-            {!Jwt && <Route path="/login" element={<LoginPage />} />}
-            {!Jwt && <Route path="/register" element={<RegisterPage />} />}
-            <Route
-              path="/home"
-              element={
-                <RequireAuth>
-                  <HomePage setIsLoading={setIsLoading} isLoading={isLoading}/>
-                </RequireAuth>
-              }
-            />
-            <Route
-              path="/rated"
-              element={
-                <RequireAuth>
-                  <Rated />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path="/scanner"
-              element={
-                <RequireAuth>
-                  <ScannerPage setIsLoading={setIsLoading} isLoading={isLoading}/>
-                </RequireAuth>
-              }
-            />
-            <Route
-              path="/logout"
-              element={
-                <RequireAuth>
-                  <Logout />
-                </RequireAuth>
-              }
-            />
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
-        </Router>
-      </div>
-    </JwtContext.Provider>
+              {!Jwt && <Route path="/login" element={<LoginPage />} />}
+              {!Jwt && <Route path="/register" element={<RegisterPage />} />}
+              <Route
+                path="/home"
+                element={
+                  <RequireAuth>
+                    <HomePage
+                      setIsLoading={setIsLoading}
+                      isLoading={isLoading}
+                    />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/rated"
+                element={
+                  <RequireAuth>
+                    <Rated />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/scanner"
+                element={
+                  <RequireAuth>
+                    <ScannerPage
+                      setIsLoading={setIsLoading}
+                      isLoading={isLoading}
+                    />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/logout"
+                element={
+                  <RequireAuth>
+                    <Logout />
+                  </RequireAuth>
+                }
+              />
+              <Route path="/*" element={<NotFound />} />
+            </Routes>
+          </Router>
+        </div>
+      </JwtContext.Provider>
+    </DiaryListContext.Provider>
   );
 }
 

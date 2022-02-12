@@ -6,7 +6,8 @@ import axios from "axios";
 function ScannerResult({ props, props2 }) {
   const [error, setError] = useState();
 
-  console.log(props2.length > 0);
+  
+
   // const arrayProduct = [];
   // if (props2.length) {
   //   if (!props.fav.includes(props2[0]._id)) {
@@ -19,13 +20,17 @@ function ScannerResult({ props, props2 }) {
     axios
       .patch("http://localhost:8000/api/users/" + props._id, {
         allergens: [...props.allergens],
-        fav: !props.fav.includes(props2[0]._id)
-          ? [...props.fav, props2[0]._id]
-          : [...props.fav],
+        fav:
+          props2 === ""
+            ? [...props.fav]
+            : !props.fav.includes(props2[0]._id)
+            ? [...props.fav, props2[0]._id]
+            : [...props.fav],
         diary: [...props.diaryList],
       })
       .then((res) => {
         console.log(res);
+        localStorage.setItem("favorites", props.fav)
       })
       .catch((err) => {
         console.log(err);

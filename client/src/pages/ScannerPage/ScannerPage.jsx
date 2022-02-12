@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./ScannerPage.scss";
 import axios from "axios";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import Prueba from "../../components/Prueba/Prueba";
 import ScannerResult from "../../components/ScannerResult/ScannerResult";
 import { Link } from "react-router-dom";
+import {DiaryListContext} from "../../shared/DiaryListContext/DiaryListContext"
 function ScannerPage() {
   const [data, setData] = React.useState("Not found");
   const [text, setText] = React.useState("codigo de barras");
   const [loading, setLoading] = useState(true);
-  const [select, setSelect] = useState(true)
-
+  const [select, setSelect] = useState(true);
+  const diaryContext = useContext(DiaryListContext)
+  diaryContext.setDiaryList(data);
+  console.log(diaryContext.diaryList);
 
   useEffect(() => {
     const loadData = async () => {
@@ -55,7 +58,6 @@ function ScannerPage() {
           </div>
 
           <div className="c-scannerPage__scanner">
-
             <div className="c-scannerPage__scanner--cam">
               <BarcodeScannerComponent
                 width={300}
@@ -68,33 +70,45 @@ function ScannerPage() {
             </div>
 
             <div className="c-scannerPage__scanner--btn">
-
-              <div onClick={() => setSelect(!select)} className="c-scannerPage__scanner--btn--item" >
-                {select == true ? (<img
-                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644598851/oval_3x_xqzxrf.png" alt="barCode icon" />) :
-                  (<img
-                    src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644598840/barcode-negro_fbgvkc.png" />)}
+              <div
+                onClick={() => setSelect(!select)}
+                className="c-scannerPage__scanner--btn--item"
+              >
+                {select == true ? (
+                  <img
+                    src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644598851/oval_3x_xqzxrf.png"
+                    alt="barCode icon"
+                  />
+                ) : (
+                  <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644598840/barcode-negro_fbgvkc.png" />
+                )}
                 <p>Codigo de barras</p>
               </div>
 
-              <div onClick={() => setSelect(!select)} className="c-scannerPage__scanner--btn--item">
-                {select == false ? (<img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644598841/qr-azul_nevak1.png" />) :
-                  (<img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644598844/ovalCopy_3x_rosdoc.png" alt="qrCode icon" />)}
+              <div
+                onClick={() => setSelect(!select)}
+                className="c-scannerPage__scanner--btn--item"
+              >
+                {select == false ? (
+                  <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644598841/qr-azul_nevak1.png" />
+                ) : (
+                  <img
+                    src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644598844/ovalCopy_3x_rosdoc.png"
+                    alt="qrCode icon"
+                  />
+                )}
                 <p>Codigo QR</p>
               </div>
 
               <div className="c-scannerPage__scanner--btn--item">
-                <img
-                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644489507/nfc_yn7rro.png" />
+                <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644489507/nfc_yn7rro.png" />
                 <p>NFC</p>
               </div>
-
             </div>
-
           </div>
         </div>
       ) : (
-        <Prueba props={data} />
+        <Prueba props={data}/>
       )}
     </>
   );
