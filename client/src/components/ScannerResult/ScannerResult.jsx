@@ -4,23 +4,33 @@ import "./ScannerResult.scss";
 import axios from "axios";
 
 function ScannerResult({ props, props2 }) {
-  const [error, setError] = useState()
+  const [error, setError] = useState();
 
-console.log(props,props2)
+  console.log(props2.length > 0);
+  // const arrayProduct = [];
+  // if (props2.length) {
+  //   if (!props.fav.includes(props2[0]._id)) {
+  //     arrayProduct.push(props2[0]._id);
+  //   }
+  // }
+
+  console.log(props, props2);
   const addFavorite = () => {
-    axios.patch("http://localhost:8000/api/users/"+ props._id, {
-      fav:[props2[0]._id]
-    }).then(() =>{
-      console.log( "yes found")
-    }).catch(() =>{
-      console.log( "Not found")
-    })
-
-  }
-
-
-
-
+    axios
+      .patch("http://localhost:8000/api/users/" + props._id, {
+        allergens: [...props.allergens],
+        fav: !props.fav.includes(props2[0]._id)
+          ? [...props.fav, props2[0]._id]
+          : [...props.fav],
+        diary: [...props.diaryList],
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   let coincidence;
   let text;
@@ -43,6 +53,7 @@ console.log(props,props2)
         }
       }
     };
+    console.log(allArray);
     verify();
     coincidence =
       allArray.length !== productArray.length + userArray.length ? true : false;
@@ -51,9 +62,10 @@ console.log(props,props2)
   } else {
     text = "No hay datos para mostrar";
   }
-  console.log(text);
-  console.log(props);
-  console.log(props2);
+
+  // console.log(text);
+  // console.log(props);
+  // console.log(props2);
 
   return (
     <div className="c-scannerresult">
@@ -76,58 +88,61 @@ console.log(props,props2)
       </div>
       <div className="c-scannerresult__text">
         {coincidence ? (
-          <p>Este producto <span>NO</span> es apto para tí</p>
+          <p>
+            Este producto <span>NO</span> es apto para tí
+          </p>
         ) : text ? (
-          <p>Lo sentimos, no hay datos suficientes para poder valorar este producto</p>
+          <p>
+            Lo sentimos, no hay datos suficientes para poder valorar este
+            producto
+          </p>
         ) : (
           <p>Este producto es apto para ti</p>
         )}
       </div>
-        <div className="c-scannerresult__imgcontainer">
-          <div className="c-scannerresult__imgcontainer--border">
-            {coincidence ? (
-              <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-rojo_prrt2l.png" />
-            ) : text ? (
-              <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-amarillo_lctbno.png" />
-            ) : (
-              <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-verde_lruwuu.png" />
-            )}
-            </div>
-            <div className="c-scannerresult__imgcontainer--product">
-            {props2 && (
-              <img className="Absolute" src={props2[0].image} alt=""></img>
-            )}
-              </div> 
-
-          <div  className="c-scannerresult__imgcontainer--icons">
-            <img
-              src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326247/favorito_3x_uuzvff.png"
-              alt="favorite" onClick={addFavorite}
-            ></img>
-            <img
-              src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326248/diario_3x_nsw6xi.png"
-              alt="diary"
-            ></img>
-            <img
-              src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326247/red_3x_ivwedb.png"
-              alt="shared"
-            ></img>
-          </div>
-        
-     
-        
-      </div >
-      <div className="c-scannerresult__info">
-          {props2 && <h3>{props2[0].name}</h3>}
-          {props2 && <h4>{props2[0].brand}</h4>}
-          {props2 && (
-            <p>
-              <strong>Ingredientes:</strong> {props2[0].ingredients}
-            </p>
+      <div className="c-scannerresult__imgcontainer">
+        <div className="c-scannerresult__imgcontainer--border">
+          {coincidence ? (
+            <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-rojo_prrt2l.png" />
+          ) : text ? (
+            <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-amarillo_lctbno.png" />
+          ) : (
+            <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-verde_lruwuu.png" />
           )}
-        </div >
-        <div className="c-scannerresult__btn">
-      <button>Escanea otro producto</button>
+        </div>
+        <div className="c-scannerresult__imgcontainer--product">
+          {props2 && (
+            <img className="Absolute" src={props2[0].image} alt=""></img>
+          )}
+        </div>
+
+        <div className="c-scannerresult__imgcontainer--icons">
+          <img
+            src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326247/favorito_3x_uuzvff.png"
+            alt="favorite"
+            onClick={addFavorite}
+          ></img>
+          <img
+            src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326248/diario_3x_nsw6xi.png"
+            alt="diary"
+          ></img>
+          <img
+            src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326247/red_3x_ivwedb.png"
+            alt="shared"
+          ></img>
+        </div>
+      </div>
+      <div className="c-scannerresult__info">
+        {props2 && <h3>{props2[0].name}</h3>}
+        {props2 && <h4>{props2[0].brand}</h4>}
+        {props2 && (
+          <p>
+            <strong>Ingredientes:</strong> {props2[0].ingredients}
+          </p>
+        )}
+      </div>
+      <div className="c-scannerresult__btn">
+        <button>Escanea otro producto</button>
       </div>
     </div>
   );
