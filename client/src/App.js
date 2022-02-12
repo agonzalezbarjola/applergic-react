@@ -11,9 +11,10 @@ import RequireAuth from "./components/RequireAuth/RequireAuth";
 import NotFound from "./pages/NotFound/NotFound";
 import Logout from "./components/Logout/Logout";
 import { DiaryListContext } from "./shared/DiaryListContext/DiaryListContext";
+import DiaryList from "./components/DiaryList/DiaryList";
 function App() {
   const [Jwt, setJwt] = useState(localStorage.getItem("token") || null);
-  const [diaryList, setDiaryList] = useState([]);
+  const [diaryList, setDiaryList] = useState(localStorage.getItem("code") === "true");
   const [isLoading, setIsLoading] = useState(true);
   return (
     <DiaryListContext.Provider value={{ diaryList, setDiaryList }}>
@@ -60,6 +61,14 @@ function App() {
                 element={
                   <RequireAuth>
                     <Logout />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/diary"
+                element={
+                  <RequireAuth>
+                    <DiaryList />
                   </RequireAuth>
                 }
               />

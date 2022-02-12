@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import ScannerResult from "../ScannerResult/ScannerResult";
 
@@ -12,6 +12,7 @@ function Prueba({ props }) {
 
   console.log(haveAllergy);
 
+  console.log(props);
   const getProduct = async () => {
     const res = await axios(`http://localhost:8000/api/products/${data}`, {
       headers: {
@@ -52,12 +53,20 @@ function Prueba({ props }) {
     getProduct();
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem(
+      "code",
+      localStorage.getItem("code") === null ? "" :
+        localStorage.getItem("code") + "," + props,
+      props
+    );
+  }, [props]);
+
   return (
     <>
       {isFetched && isFetched2 && (
         <ScannerResult props={user} props2={product} props3={isFetched} />
       )}
-      
     </>
   );
 }

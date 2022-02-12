@@ -30,7 +30,7 @@ function ScannerResult({ props, props2 }) {
       })
       .then((res) => {
         console.log(res);
-        localStorage.setItem("favorites", props.fav)
+        
       })
       .catch((err) => {
         console.log(err);

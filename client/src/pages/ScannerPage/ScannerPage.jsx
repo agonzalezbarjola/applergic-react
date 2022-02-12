@@ -5,16 +5,13 @@ import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import Prueba from "../../components/Prueba/Prueba";
 import ScannerResult from "../../components/ScannerResult/ScannerResult";
 import { Link } from "react-router-dom";
-import {DiaryListContext} from "../../shared/DiaryListContext/DiaryListContext"
+import { DiaryListContext } from "../../shared/DiaryListContext/DiaryListContext";
 function ScannerPage() {
   const [data, setData] = React.useState("Not found");
   const [text, setText] = React.useState("codigo de barras");
   const [loading, setLoading] = useState(true);
   const [select, setSelect] = useState(true);
-  const diaryContext = useContext(DiaryListContext)
-  diaryContext.setDiaryList(data);
-  console.log(diaryContext.diaryList);
-
+ 
   useEffect(() => {
     const loadData = async () => {
       await new Promise((r) => setTimeout(r, 2000));
@@ -108,7 +105,7 @@ function ScannerPage() {
           </div>
         </div>
       ) : (
-        <Prueba props={data}/>
+        <Prueba props={data} />
       )}
     </>
   );
