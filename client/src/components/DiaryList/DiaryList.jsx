@@ -14,6 +14,8 @@ function DiaryList() {
   });
   const diaryList = diaryFinal.filter((item) => item !== "");
   console.log(diaryList);
+ 
+
   const getProducts = async () => {
     axios
       .get(`http://localhost:8000/api/products/`, {
@@ -41,11 +43,11 @@ function DiaryList() {
     getProducts();
   }, []);
 
-  console.log(product);
-  //   console.log(product);
+  
+     console.log(product);
   return (
     <div>
-    {product.map((item)=> <p>{item.name}</p>)}
+      {<p>{product[0].name}</p>}
     </div>
   );
 }
