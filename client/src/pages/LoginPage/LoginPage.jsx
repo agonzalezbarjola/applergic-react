@@ -19,6 +19,10 @@ const LoginPage = () => {
         localStorage.setItem("user", JSON.stringify(res.data.userDB.name));
         localStorage.setItem("id", JSON.stringify(res.data.userDB._id));
         localStorage.setItem("email", JSON.stringify(res.data.userDB.email));
+        localStorage.setItem("allergens", JSON.stringify(res.data.userDB.allergens));
+        localStorage.setItem("userComplete", JSON.stringify(res.data));
+        
+       
         console.log(res.data);
         navigate("/home");
         setJwt(true);

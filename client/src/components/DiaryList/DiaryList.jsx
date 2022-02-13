@@ -6,6 +6,7 @@ function DiaryList() {
   //   console.log(diaryListArray);
   const diaryFinal = [];
   const [product, setProduct] = useState([]);
+  const [ verify, setVerify ] = useState([]);
   diaryListArray.forEach((item) => {
     //pushes only unique element
     if (!diaryFinal.includes(item)) {
@@ -14,7 +15,12 @@ function DiaryList() {
   });
   const diaryList = diaryFinal.filter((item) => item !== "");
   console.log(diaryList);
- 
+
+  const allergensStorage = JSON.parse(localStorage.getItem("allergens"));
+  console.log(allergensStorage);
+
+  
+
 
   const getProducts = async () => {
     const res = await axios
@@ -31,24 +37,67 @@ function DiaryList() {
           },
         },
       })
-      setProduct(res.data.res);
-      // .then((res) => {
-      //   console.log(res);
-      //   setProduct(res.data.res)
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
+    setProduct(res.data.res);
+    console.log(product)
+
+    
+
+    
+
+
+
+    // .then((res) => {
+    //   console.log(res);
+    //   setProduct(res.data.res)
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // });
   };
+
+  product.map(item => allergensStorage.map(item2 => 
+    item.allergens.includes(item2) ? setVerify(true) : setVerify(false) ))
+
+    
   useEffect(() => {
     getProducts();
+    
+
   }, []);
 
-  
-     console.log(product);
+  console.log(verify);
+
   return (
     <div>
-      <p>{product.map((item)=>item.name)}</p>
+      <div>
+        <img src="" alt="calanedar icon" />
+        <img src="" alt="filter " />
+        <img src="" alt="close" />
+      </div>
+      <div>
+        <h3></h3>
+        <p></p>
+      </div>
+      {product.map((item) =>
+
+
+
+
+        <div key={item._id} >
+
+          <div><img src={item.image} alt={item.name} /></div>
+          <div>
+            <p> </p>
+            <p>{item.name}</p>
+            <p>Nota:  </p>
+          </div>
+          <div>
+            <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png" alt="icon close" />
+            <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644753878/editicon_reuedr.png" alt="icon Edit" />
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
