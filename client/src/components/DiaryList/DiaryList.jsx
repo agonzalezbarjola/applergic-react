@@ -99,7 +99,7 @@ function DiaryList() {
           )
       )}
       {product.map((item) =>
-        item.allergens.map((item2) =>
+        item.allergens.slice(0,1).map((item2) =>
           allergensStorage.includes(item2) ? (
             <div className="c-diaryList__products" key={item._id}>
               <div className="c-diaryList__products--img">
