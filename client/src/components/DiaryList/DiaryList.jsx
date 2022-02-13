@@ -5,7 +5,7 @@ function DiaryList() {
   const diaryListArray = localStorage.getItem("code").split(",");
   //   console.log(diaryListArray);
   const diaryFinal = [];
-  const [product, setProduct] = useState();
+  const [product, setProduct] = useState([]);
   diaryListArray.forEach((item) => {
     //pushes only unique element
     if (!diaryFinal.includes(item)) {
@@ -17,7 +17,7 @@ function DiaryList() {
  
 
   const getProducts = async () => {
-    axios
+    const res = await axios
       .get(`http://localhost:8000/api/products/`, {
         params: { codes: diaryList },
         paramsSerializer: (params) => {
@@ -31,13 +31,14 @@ function DiaryList() {
           },
         },
       })
-      .then((res) => {
-        console.log(res);
-        setProduct(res.data.res)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      setProduct(res.data.res);
+      // .then((res) => {
+      //   console.log(res);
+      //   setProduct(res.data.res)
+      // })
+      // .catch((err) => {
+      //   console.log(err);
+      // });
   };
   useEffect(() => {
     getProducts();
@@ -47,7 +48,7 @@ function DiaryList() {
      console.log(product);
   return (
     <div>
-      {<p>{product[0].name}</p>}
+      <p>{product.map((item)=>item.name)}</p>
     </div>
   );
 }

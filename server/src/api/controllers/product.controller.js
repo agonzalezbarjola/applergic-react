@@ -10,10 +10,24 @@ const getProduct = async (req, res, next) => {
     if (!productDb) {
       return next(setError(404, "Product not found"));
     }
-    return res.status(200).json({ res: productDb, code: code });
+    return res.status(200).json({ res: productDb });
   } catch (error) {
     return next(setError(500, "Product server error"));
   }
 };
 
-module.exports = { getProduct };
+const getProductByCode = async (req, res, next) => {
+  try {
+    const { code } = req.params;
+    const productDb = await Product.find({code: code});
+    console.log(productDb);
+    if (!productDb) {
+      return next(setError(404, "Product not found"));
+    }
+    return res.status(200).json(productDb);
+  } catch (error) {
+    return next(setError(500, "Product server error"));
+  }
+};
+
+module.exports = { getProduct, getProductByCode };
