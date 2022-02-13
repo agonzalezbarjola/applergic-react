@@ -72,14 +72,18 @@ function HomePage() {
         </div>
 
         <div className="homepage__main--btn">
+          <Link to="/search">
           <button className="homepage__main--btn-serch">
             <img
               src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326247/buscar_3x_ajq3ej.png"
               alt="search"
             />
             Buscar
+            
           </button>
+          </Link>
           <p>Busca un comercio o un restaurante para ti.</p>
+              
         </div>
         <div className="homepage__main--btn">
           <button className="homepage__main--btn-sos">

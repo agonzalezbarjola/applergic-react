@@ -12,6 +12,9 @@ import NotFound from "./pages/NotFound/NotFound";
 import Logout from "./components/Logout/Logout";
 import { DiaryListContext } from "./shared/DiaryListContext/DiaryListContext";
 import DiaryList from "./components/DiaryList/DiaryList";
+import SearchPage from "./pages/SearchPage/SearchPage";
+
+
 function App() {
   const [Jwt, setJwt] = useState(localStorage.getItem("token") || null);
   const [diaryList, setDiaryList] = useState(localStorage.getItem("code") === "true");
@@ -33,7 +36,8 @@ function App() {
                     <HomePage
                       setIsLoading={setIsLoading}
                       isLoading={isLoading}
-                    />
+                    />                                      
+                                         
                   </RequireAuth>
                 }
               />
@@ -55,7 +59,21 @@ function App() {
                     />
                   </RequireAuth>
                 }
-              />
+                              
+                />
+              <Route
+                path="/search"
+                element={
+                  <RequireAuth>
+                    <SearchPage
+                      setIsLoading={setIsLoading}
+                      isLoading={isLoading}
+                    />
+                  </RequireAuth>
+                }
+                              
+                />
+
               <Route
                 path="/logout"
                 element={
@@ -75,6 +93,8 @@ function App() {
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </Router>
+          
+     
         </div>
       </JwtContext.Provider>
     </DiaryListContext.Provider>
