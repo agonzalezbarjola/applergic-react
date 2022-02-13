@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import qs from "qs";
 function DiaryList() {
   const diaryListArray = localStorage.getItem("code").split(",");
   //   console.log(diaryListArray);
@@ -14,37 +14,40 @@ function DiaryList() {
   });
   const diaryList = diaryFinal.filter((item) => item !== "");
   console.log(diaryList);
-  const promises = [];
-  const user = [];
-  useEffect(() => {
-    for (const code of diaryList) {
-      promises.push(
-        axios
-          .get(`http://localhost:8000/api/products/${code}`, {
-            headers: {
-              Authorization: {
-                toString() {
-                  return `Bearer ${localStorage.getItem("token")}`;
-                },
-              },
+  const getProducts = async () => {
+    axios
+      .get(`http://localhost:8000/api/products/`, {
+        params: { codes: diaryList },
+        paramsSerializer: (params) => {
+          return qs.stringify(params, { arrayFormat: "repeat" });
+        },
+        headers: {
+          Authorization: {
+            toString() {
+              return `Bearer ${localStorage.getItem("token")}`;
             },
-          })
-          .then((res) => {
-            //   console.log(res.data);
-            res.data.length && setProduct(res.data);
-            user.push(res.data[0]);
-            // setProduct(...product, res.data);
-          })
-          .catch((err) => {
-            console.log(err);
-          })
-      );
-    }
-    Promise.all(promises).then(() => console.log(user));
+          },
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        setProduct(res.data.res)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    getProducts();
   }, []);
-  console.log(user);
-//   console.log(product);
-  return <div><p>{}</p></div>;
+
+  console.log(product);
+  //   console.log(product);
+  return (
+    <div>
+    {product.map((item)=> <p>{item.name}</p>)}
+    </div>
+  );
 }
 
 export default DiaryList;
