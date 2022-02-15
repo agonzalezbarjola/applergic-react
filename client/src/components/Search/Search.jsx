@@ -40,7 +40,6 @@ function Search({ details }) {
       </div>
       <div className="c-imput">
         <input 
-          className=""
           type = "search" 
           placeholder = "" 
            onChange = {handleChange}

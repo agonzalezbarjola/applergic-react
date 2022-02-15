@@ -1,10 +1,29 @@
 
 .c-section {
-    background-color: aquamarine;
+
+    background:rgb(184, 181, 181);
+    display: flex-column;
+    text-align:center;
+    padding: auto;
+    padding-top : 10px;
 }
 
 
 .c-titleSearch {
-    background-color: aqua;
-    display: flex;
+       
+    text-align: center;
+  
+
+    .c-titleSearch__title{
+
+        text-align: center;
+        padding: 10px;
+        margin: 10px;
+
+    }
+
+}
+.c-imput{
+   
+    margin: 20px;
 }
