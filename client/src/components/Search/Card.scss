@@ -1,0 +1,23 @@
+.card{
+
+    margin: 15px;
+
+    &__img{
+
+        img{
+            max-width: 80px;
+            max-height: 80px;
+
+        }
+    }
+
+    &__info{
+
+        h2{
+            font-size: 15px;
+            font-weight: 500px;
+            text-transform: uppercase; 
+            letter-spacing: 0.06em;
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import React from 'react';
-import "./Search.scss";
+import "./Card.scss";
+
 
 function Card({restaurant}) {
   return(
@@ -7,7 +8,7 @@ function Card({restaurant}) {
       <div className="card__img">
         <img alt={restaurant.name} src={process.env.PUBLIC_URL + restaurant.imgPath} />
       </div>
-      <div>
+      <div className="card__info">
         <h2>{restaurant.name}</h2>
         <p>{restaurant.email}</p>
       </div>
