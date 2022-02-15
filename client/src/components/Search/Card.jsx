@@ -1,9 +1,12 @@
 import React from 'react';
+import "./Search.scss";
 
 function Card({restaurant}) {
   return(
-    <div >
-      <img alt={restaurant.name} src={process.env.PUBLIC_URL + restaurant.imgPath} />
+    <div className="card">
+      <div className="card__img">
+        <img alt={restaurant.name} src={process.env.PUBLIC_URL + restaurant.imgPath} />
+      </div>
       <div>
         <h2>{restaurant.name}</h2>
         <p>{restaurant.email}</p>

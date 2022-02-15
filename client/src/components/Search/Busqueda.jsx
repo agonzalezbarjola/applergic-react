@@ -1,7 +1,7 @@
 const initialDetails = [
     {
       id: 1,
-      imgPath: "",
+      imgPath: "https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326248/logoApplergicFinal_3x_aod5sh.png",
       name: "Monsieur Sushita",
       email: "www.sushita.com",
       address: "Madrid",
