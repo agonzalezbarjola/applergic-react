@@ -37,7 +37,7 @@ function FormFour({ props }) {
           src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644431764/ok_wpyxsr.png"
           alt="its ok"
         />
-        <h4>Hemos termionado, ya puedes escanear tu primer producto.</h4>
+        <h4>Hemos terminado, ya puedes escanear tu primer producto.</h4>
       </div>
 
       <div className="c-formfour__btn">
