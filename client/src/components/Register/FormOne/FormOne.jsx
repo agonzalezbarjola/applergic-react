@@ -3,24 +3,24 @@ import { appendErrors, useForm } from "react-hook-form";
 import "./FormOne.scss";
 function FormOne({ props, props2 }) {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const [img, setImg] = useState("https://res.cloudinary.com/dkv0drgbb/image/upload/v1644339967/D67E0CB8-AB0E-4A07-89FB-8FFEA5597A92_rxmbuy.png");
+  const [img, setImg] = useState(" ");
   const [isUploaded, setIsUploaded] = useState(false)
 
-  const HandleImageChange = (e) => {
+  const handleImageChange = (e) => {
+      
+    console.log("Entra en funcion");   
+    console.log(img)
 
-    console.log("Entra en funcion")
-    if (e.target.filer && e.target.files[0]) {
+    if (e.target.files && e.target.files[0]) {
 
-      let reader = new FileReader();
-
-
-      reader.onload = () => {
-        setImg(e.target.result)
+      let reader = new FileReader()
+      reader.onload = function (e) {
+        setImg(e.target.files[0])
         setIsUploaded(true)
       }
-
       reader.readAsDataURL(e.target.files[0])
-    }
+     
+    }    
   }
 
   const onClickForm = (formData) => {
@@ -36,8 +36,7 @@ function FormOne({ props, props2 }) {
       image: formData.image,
     });
   };
-
-  console.log(img);
+  
 
 
   return (
@@ -56,19 +55,17 @@ function FormOne({ props, props2 }) {
                 <label htmlFor="upload-photo">
                   <img
                     
-                    src={img}
+                    src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644339967/D67E0CB8-AB0E-4A07-89FB-8FFEA5597A92_rxmbuy.png"
                     alt="user img"
                   />
                   <p>subir foto</p>
                 </label>
-                <input
-                  type="file"
-                  alt=""
+                <input                
+                  type="file"                  
                   name="upload-photo"
                   id="upload-photo"
-                  accept=".jpg, .jpeg, .gif, .png"  
-                  encType="multipart/form-data"
-                  onChange={HandleImageChange}
+                  accept=".jpg, .jpeg, .gif, .png"                    
+                  onChange={handleImageChange}
                           
                   {...register("image")}
                 />
@@ -76,7 +73,9 @@ function FormOne({ props, props2 }) {
 
             ) : (
 
-              <img srt={img} id="uploaded-photo" alt="uploaded-photo" />
+               <p>Hola como estas</p>
+
+              //<img srt={img} id="uploaded-photo" alt="uploaded-photo" />
 
             )
           }
@@ -84,7 +83,7 @@ function FormOne({ props, props2 }) {
         </div>
 
         <div className="c-formone__form--info">
-          <input
+          <input                         
             type="text"
             placeholder="Nombre completo"
             {...register("name", { required:{
