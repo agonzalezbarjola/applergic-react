@@ -13,6 +13,7 @@ import Logout from "./components/Logout/Logout";
 import { DiaryListContext } from "./shared/DiaryListContext/DiaryListContext";
 import DiaryList from "./components/DiaryList/DiaryList";
 import SearchPage from "./pages/SearchPage/SearchPage";
+import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 
 
 function App() {
@@ -90,6 +91,18 @@ function App() {
                   </RequireAuth>
                 }
               />
+               <Route
+                path="/favorites"
+                element={
+                  <RequireAuth>
+                    <FavoritesPage
+                      setIsLoading={setIsLoading}
+                      isLoading={isLoading}
+                    />
+                  </RequireAuth>
+                }
+                              
+                />
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </Router>

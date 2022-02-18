@@ -50,7 +50,7 @@ const getUser = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const userDB = await User.findById(id);
+    const userDB = await User.findById(id).populate('fav');
     if (!userDB) {
       return next(setError(404, "User not found"));
     }
@@ -62,7 +62,7 @@ const getUser = async (req, res, next) => {
 
 const getAllUsers = async (req, res, next) => {
   try {
-    const userDB = await User.find();
+    const userDB = await User.find().populate('fav')
     if (!userDB) {
       return next(setError(404, "User not found"));
     }

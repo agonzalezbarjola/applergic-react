@@ -35,7 +35,7 @@ function DiaryList() {
       },
     });
     setProduct(res.data.res);
-
+    
     // .then((res) => {
     //   console.log(res);
     //   setProduct(res.data.res)
@@ -47,8 +47,9 @@ function DiaryList() {
 
   useEffect(() => {
     getProducts();
-    console.log(product);
+    
   }, []);
+  console.log(product);
   return (
     <div className="c-diaryList">
       <div className="c-diaryList__icons">

@@ -10,6 +10,21 @@ const getProduct = async (req, res, next) => {
     if (!productDb) {
       return next(setError(404, "Product not found"));
     }
+    return res.status(200).json({ res: productDb,});
+  } catch (error) {
+    return next(setError(500, "Product server error"));
+  }
+};
+
+const getProductById = async (req, res, next) => {
+  try {
+    // res.send(req.query.codes)
+    const id = req.query.id
+    const productDb = await Product.find({ _id: { $in: id } });
+    console.log(productDb);
+    if (!productDb) {
+      return next(setError(404, "Product not found"));
+    }
     return res.status(200).json({ res: productDb });
   } catch (error) {
     return next(setError(500, "Product server error"));
@@ -30,4 +45,6 @@ const getProductByCode = async (req, res, next) => {
   }
 };
 
-module.exports = { getProduct, getProductByCode };
+
+
+module.exports = { getProduct, getProductByCode, getProductById};
