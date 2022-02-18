@@ -87,11 +87,14 @@ function HomePage() {
         </div>
         <div className="homepage__main--btn">
           <button className="homepage__main--btn-sos">
+          
             <img
               src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326247/sos1_3x_e9lomw.png"
               alt="sos"
             />
+            <a href="tel:+34112">
             S.O.S.
+            </a>
           </button>
           <p>¿Necesitas ayuda urgente? contactamos con emergencias</p>
         </div>
