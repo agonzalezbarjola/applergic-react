@@ -2,26 +2,35 @@ import React, { useState } from "react";
 import { appendErrors, useForm } from "react-hook-form";
 import "./FormOne.scss";
 function FormOne({ props, props2 }) {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [img, setImg] = useState(" ");
-  const [isUploaded, setIsUploaded] = useState(false)
+  const [isUploaded, setIsUploaded] = useState(false);
+
+  
 
   const handleImageChange = (e) => {
-      
-    console.log("Entra en funcion");   
-    console.log(img)
+    e.preventDefault();
 
     if (e.target.files && e.target.files[0]) {
+      let reader = new FileReader();
 
-      let reader = new FileReader()
       reader.onload = function (e) {
-        setImg(e.target.files[0])
-        setIsUploaded(true)
-      }
-      reader.readAsDataURL(e.target.files[0])
-     
-    }    
-  }
+        setImg(e.target.result);
+        setIsUploaded(true);
+        {
+
+        }
+      };
+
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  
+  };
+
 
   const onClickForm = (formData) => {
     if (!formData.image.length) {
@@ -36,8 +45,6 @@ function FormOne({ props, props2 }) {
       image: formData.image,
     });
   };
-  
-
 
   return (
     <div className="c-formone">
@@ -47,75 +54,92 @@ function FormOne({ props, props2 }) {
 
       <form className="c-formone__form" onSubmit={handleSubmit(onClickForm)}>
         <div className="c-formone__form--circle">
-
-
-          {
-            !isUploaded ? (
-              <>
-                <label htmlFor="upload-photo">
-                  <img
-                    
-                    src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644339967/D67E0CB8-AB0E-4A07-89FB-8FFEA5597A92_rxmbuy.png"
-                    alt="user img"
-                  />
-                  <p>subir foto</p>
-                </label>
-                <input                
-                  type="file"                  
-                  name="upload-photo"
-                  id="upload-photo"
-                  accept=".jpg, .jpeg, .gif, .png"                    
-                  onChange={handleImageChange}
-                          
-                  {...register("image")}
+          {!isUploaded ? (
+            <>
+              <label htmlFor="upload-photo">
+                <img
+                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644339967/D67E0CB8-AB0E-4A07-89FB-8FFEA5597A92_rxmbuy.png"
+                  alt="user img"
                 />
-              </>
+                <p>subir foto</p>
+              </label>
 
-            ) : (
+              <input
+                type="file"
+                name="upload-photo"
+                id="upload-photo"                  
+                accept=".jpg, .jpeg, .gif, .png"               
+                onChange={handleImageChange}
+                {...register("image")}
+              />
+              {/* <input
+                  type="file"
+                  name="upload-photo"                  
+                  accept=".jpg, .jpeg, .gif, .png"
 
-               <p>Hola como estas</p>
+                  onChange={handleImageChange}
 
-              //<img srt={img} id="uploaded-photo" alt="uploaded-photo" />
-
-            )
-          }
-
+                  {...register("image")}
+                /> */}
+            </>
+          ) : (
+            <>
+            <label htmlFor="upload-photo">
+              <img className="uploaded-photo" src={img} id="uploaded-photo" alt="uploaded-photo" />             
+            </label>
+            <input
+            type="file"
+            name="upload-photo"
+            id="upload-photo"                  
+            accept=".jpg, .jpeg, .gif, .png"           
+            onChange={handleImageChange}
+          />
+          </>
+          )}
         </div>
 
         <div className="c-formone__form--info">
-          <input                         
+          <input
             type="text"
             placeholder="Nombre completo"
-            {...register("name", { required:{
-              value: true,
-              message: "Campo requerido"
-            }})}
+            {...register("name", {
+              required: {
+                value: true,
+                message: "Campo requerido",
+              },
+            })}
           />
           {errors.name && <span>{errors.name.message}</span>}
           <input
             type="email"
             placeholder="Dirección e.mail"
-            {...register("email", { 
+            {...register("email", {
               required: {
                 value: true,
-                message: "campo requerido"
+                message: "campo requerido",
               },
               pattern: {
-                value : /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                message: "El formato no es correcto"
-              }})}
+                value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                message: "El formato no es correcto",
+              },
+            })}
           />
           {errors.email && <span>{errors.email.message}</span>}
-          <input type="number" placeholder="Móvil" {...register("phone", { 
+          <input
+            type="number"
+            placeholder="Móvil"
+            {...register("phone", {
               required: {
                 value: true,
-                message: "campo es requerido"
+                message: "campo es requerido",
               },
               pattern: {
-                value: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,6}$/,
-                message: "El formato de número móvil no es válido"
-              }
-              })} />
+                value:
+                  /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{3,6}$/,
+                message: "El formato de número móvil no es válido",
+              },
+            })}
+          />
           {errors.phone && <span>{errors.phone.message}</span>}
           <input
             type="password"
@@ -124,11 +148,13 @@ function FormOne({ props, props2 }) {
               required: {
                 value: true,
                 message: "campo es requerido.",
-              },            
+              },
               pattern: {
-                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$/,
-                message: "La contraseña debe contener min 8 y max 12 caracteres, incluyendo 1 Mayúscula, 1 caracter especial, y minúscula,"
-              } 
+                value:
+                  /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$/,
+                message:
+                  "La contraseña debe contener min 8 y max 12 caracteres, incluyendo 1 Mayúscula, 1 caracter especial, y minúscula,",
+              },
             })}
           />
           {errors.password && <span>{errors.password.message}</span>}

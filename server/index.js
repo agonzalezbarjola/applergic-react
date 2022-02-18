@@ -32,7 +32,11 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
+<<<<<<< HEAD
     origin: ["http://localhost:3000", "http://localhost:4200"],
+=======
+    origin: ['http://localhost:3000', 'http://localhost:4200',],
+>>>>>>> 10988d977561dc77d8fe5ce09c6758eebeb6ed9b
     credentials: true,
   })
 );
