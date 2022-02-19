@@ -105,7 +105,7 @@ function FormThree({ props, props2 }) {
           <form className="form" onSubmit={handleSubmit(setAllergyConfirm)}>
             {allergensLetter.map((letter) => {
               return (
-                <div key={letter} className="c-formthree__form--list">
+                <div key={letter+1} className="c-formthree__form--list">
                   <div className="c-formthree__form--list--item">
                     <p href={`#` + letter}>{letter}</p>
                     <img src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532629/28889406-50F4-494C-B080-8E7BBA8418BE_q21yo2.png" alt="arrow top" />
@@ -114,7 +114,7 @@ function FormThree({ props, props2 }) {
                   <div className={`c-formthree__form--list--aller`} id={`#` + letter}>
                     {allergens.map((allergen) =>
                       allergen.name.charAt(0) === letter ? (
-                        <>
+                        <div key={allergen._id}>
                           <input
                             id={`${allergen.name}`}
                             type="checkbox"
@@ -122,8 +122,9 @@ function FormThree({ props, props2 }) {
                             name={allergen.name}
                             {...register("allergens")}
                           ></input>
-                          <label htmlFor={`${allergen.name}`} key={allergen._id}>{allergen.name}</label>
-                        </>
+                          <label htmlFor={`${allergen.name}`} >{allergen.name}</label>
+                        </div>
+
                       ) : (
                         ""
                       )

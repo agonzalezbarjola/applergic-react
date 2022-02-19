@@ -39,7 +39,7 @@ function FavoritesPage() {
     <div className="c-Favoritepage">
       <h3>Aquí tienes una lista de tus productos favoritos.</h3>
       {dataUser.map((item) => (
-        <div className="c-Favoritepage__products">
+        <div key={item._id}  className="c-Favoritepage__products">
           <div className="c-Favoritepage__products--img">
             <img src={item.image} alt="" />
           </div>

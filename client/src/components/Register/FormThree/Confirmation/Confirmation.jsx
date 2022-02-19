@@ -42,7 +42,7 @@ function Confirmation({ props, props2, props3, props4 }) {
         console.log(error);
         setError("Ha habido un error al registrarse intentalo nuevamente!")
       });
-  };
+  };  
 
   const handleBack = () => {
 
@@ -82,8 +82,7 @@ function Confirmation({ props, props2, props3, props4 }) {
         </div>
 
         <div className="c-confirmation__main--aller">
-          {props3.map((item, index) => <p>{item[0]}</p>)}
-          
+          {props3.map((item, index) => <p key={item[1]} >{item[0]}</p>)}          
         </div>
 
         <div className="c-confirmation__main--btn">
