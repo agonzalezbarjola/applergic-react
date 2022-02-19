@@ -10,6 +10,13 @@ function Logout() {
     setTimeout(() => {
       setJwt(false);
     console.log(Jwt);
+    // localStorage.removeItem("code");
+    // localStorage.removeItem("allergens");
+    // localStorage.removeItem("userComplete");
+    // localStorage.removeItem("email");
+    // localStorage.removeItem("user");
+    // localStorage.removeItem("id");
+    localStorage.clear();
     !Jwt && navigate("/login");
     }, 1000);
     

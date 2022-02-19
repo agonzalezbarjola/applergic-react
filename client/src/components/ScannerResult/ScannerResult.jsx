@@ -127,10 +127,13 @@ function ScannerResult({ props, props2 }) {
             alt="favorite"
             onClick={addFavorite}
           ></img>
-          <img
+          <Link to="/diary">
+            <img
             src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326248/diario_3x_nsw6xi.png"
             alt="diary"
           ></img>
+          </Link>
+          
           <img
             src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326247/red_3x_ivwedb.png"
             alt="shared"

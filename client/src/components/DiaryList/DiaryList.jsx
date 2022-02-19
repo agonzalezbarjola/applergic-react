@@ -2,52 +2,57 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
 import "./DiaryList.scss";
+import { Link } from "react-router-dom";
 function DiaryList() {
-  const diaryListArray = localStorage.getItem("code").split(",");
   //   console.log(diaryListArray);
-  const diaryFinal = [];
   const [product, setProduct] = useState([]);
   const [verify, setVerify] = useState([]);
-  diaryListArray.forEach((item) => {
-    //pushes only unique element
-    if (!diaryFinal.includes(item)) {
-      diaryFinal.push(item);
-    }
-  });
-  const diaryList = diaryFinal.filter((item) => item !== "");
-  // console.log(diaryList);
-
-  const allergensStorage = JSON.parse(localStorage.getItem("allergens"));
-  // console.log(allergensStorage);
-
-  const getProducts = async () => {
-    const res = await axios.get(`http://localhost:8000/api/products/`, {
-      params: { codes: diaryList },
-      paramsSerializer: (params) => {
-        return qs.stringify(params, { arrayFormat: "repeat" });
-      },
-      headers: {
-        Authorization: {
-          toString() {
-            return `Bearer ${localStorage.getItem("token")}`;
-          },
-        },
-      },
-    });
-    setProduct(res.data.res);
-    
-    // .then((res) => {
-    //   console.log(res);
-    //   setProduct(res.data.res)
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    // });
-  };
+  const [allergens, setAllergens] = useState();
 
   useEffect(() => {
-    getProducts();
-    
+    if (localStorage.getItem("code")) {
+      const diaryFinal = [];
+      const diaryListArray = localStorage.getItem("code").split(",");
+
+      diaryListArray.forEach((item) => {
+        //pushes only unique element
+        if (!diaryFinal.includes(item)) {
+          diaryFinal.push(item);
+        }
+      });
+      const diaryList = diaryFinal.filter((item) => item !== "");
+      // console.log(diaryList);
+
+      const allergensStorage = JSON.parse(localStorage.getItem("allergens"));
+      // console.log(allergensStorage);
+      setAllergens(allergensStorage);
+
+      const getProducts = async () => {
+        const res = await axios.get(`http://localhost:8000/api/products/`, {
+          params: { codes: diaryList },
+          paramsSerializer: (params) => {
+            return qs.stringify(params, { arrayFormat: "repeat" });
+          },
+          headers: {
+            Authorization: {
+              toString() {
+                return `Bearer ${localStorage.getItem("token")}`;
+              },
+            },
+          },
+        });
+        setProduct(res.data.res);
+
+        // .then((res) => {
+        //   console.log(res);
+        //   setProduct(res.data.res)
+        // })
+        // .catch((err) => {
+        //   console.log(err);
+        // });
+      };
+      getProducts();
+    }
   }, []);
   console.log(product);
   return (
@@ -61,10 +66,13 @@ function DiaryList() {
           src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644775899/filter_sfjtul.png"
           alt="filter "
         />
-        <img
+        <Link to="/home">
+          <img
           src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png"
           alt="close"
         />
+        </Link>
+        
       </div>
       <div className="c-diaryList__title">
         <h3>¿Incluimos la selección en tu Diario?</h3>
@@ -75,16 +83,21 @@ function DiaryList() {
           item.allergens.length === 0 && (
             <div className="c-diaryList__products" key={item._id}>
               <div className="c-diaryList__products--img">
-                <img className="c-diaryList__products--img--frame"
+                <img
+                  className="c-diaryList__products--img--frame"
                   src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-verde_lruwuu.png"
                   alt="frame green"
                 />
-                <img className="c-diaryList__products--img--product" src={item.image} alt={item.name} />
+                <img
+                  className="c-diaryList__products--img--product"
+                  src={item.image}
+                  alt={item.name}
+                />
               </div>
               <div className="c-diaryList__products--text">
                 <p> </p>
                 <p>{item.name} sin datos de alergia</p>
-                <p>Nota: </p>
+                {/* <p>Nota: {item.diaryList[0].notes}</p> */}
               </div>
               <div className="c-diaryList__products--icon">
                 <img
@@ -100,20 +113,25 @@ function DiaryList() {
           )
       )}
       {product.map((item) =>
-        item.allergens.slice(0,1).map((item2) =>
-          allergensStorage.includes(item2) ? (
+        item.allergens.slice(0, 1).map((item2) =>
+          allergens.includes(item2) ? (
             <div className="c-diaryList__products" key={item._id}>
               <div className="c-diaryList__products--img">
-                <img className="c-diaryList__products--img--frame"
+                <img
+                  className="c-diaryList__products--img--frame"
                   src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-rojo_prrt2l.png"
                   alt="frame pink"
                 />
-                <img className="c-diaryList__products--img--product" src={item.image} alt={item.name} />
+                <img
+                  className="c-diaryList__products--img--product"
+                  src={item.image}
+                  alt={item.name}
+                />
               </div>
               <div className="c-diaryList__products--text">
                 <p> </p>
                 <p>{item.name} con alergia</p>
-                <p>Nota: </p>
+                {/* <p>Nota: {item.diaryList[0].notes}</p> */}
               </div>
               <div className="c-diaryList__products--icon">
                 <img
@@ -129,16 +147,21 @@ function DiaryList() {
           ) : (
             <div className="c-diaryList__products green" key={item._id}>
               <div className="c-diaryList__products--img">
-                <img className="c-diaryList__products--img--frame"
+                <img
+                  className="c-diaryList__products--img--frame"
                   src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-verde_lruwuu.png"
                   alt="frame green"
                 />
-                <img className="c-diaryList__products--img--product" src={item.image} alt={item.name} />
+                <img
+                  className="c-diaryList__products--img--product"
+                  src={item.image}
+                  alt={item.name}
+                />
               </div>
               <div className="c-diaryList__products--text">
                 <p> </p>
                 <p>{item.name} sin alergia</p>
-                <p>Nota: </p>
+                {/* <p>Nota: {item.diaryList[0].notes}</p> */}
               </div>
               <div className="c-diaryList__products--icon">
                 <img
@@ -154,6 +177,7 @@ function DiaryList() {
           )
         )
       )}
+      <button>Guardar</button>
     </div>
   );
 }
