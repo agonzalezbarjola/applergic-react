@@ -50,7 +50,7 @@ const getUser = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const userDB = await User.findById(id).populate('fav');
+    const userDB = await User.findById(id).populate('fav','Products');
     if (!userDB) {
       return next(setError(404, "User not found"));
     }

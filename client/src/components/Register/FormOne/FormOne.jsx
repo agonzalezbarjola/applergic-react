@@ -33,9 +33,9 @@ function FormOne({ props, props2 }) {
 
 
   const onClickForm = (formData) => {
-    if (!formData.image.length) {
-      formData.image = "";
-    }
+    // if (!formData.image.length) {
+    //   formData.image = "";
+    // }
     props({
       ...props2,
       name: formData.name,
@@ -70,7 +70,7 @@ function FormOne({ props, props2 }) {
                 id="upload-photo"                  
                 accept=".jpg, .jpeg, .gif, .png"               
                 onChange={handleImageChange}
-                {...register("image")}
+                // {...register("image")}
               />
               {/* <input
                   type="file"
