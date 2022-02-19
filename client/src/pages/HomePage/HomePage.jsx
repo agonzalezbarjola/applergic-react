@@ -21,9 +21,9 @@ function HomePage() {
 
   if (loading) {
     return (
-      <div>
+      <div className="isloading">
         {" "}
-        <img
+        <img 
           src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532203/loading_yhwlmu.gif"
           alt=""
         ></img>

@@ -49,7 +49,7 @@ export default function MyComponent() {
 
   if (loading) {
     return (
-      <div>
+      <div className="isloading">
         {" "}
         <img
           src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532203/loading_yhwlmu.gif"
