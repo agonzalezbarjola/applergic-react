@@ -68,11 +68,11 @@ function DiaryList() {
         />
         <Link to="/home">
           <img
-          src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png"
-          alt="close"
-        />
+            src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png"
+            alt="close"
+          />
         </Link>
-        
+
       </div>
       <div className="c-diaryList__title">
         <h3>¿Incluimos la selección en tu Diario?</h3>
@@ -85,7 +85,7 @@ function DiaryList() {
               <div className="c-diaryList__products--img">
                 <img
                   className="c-diaryList__products--img--frame"
-                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-verde_lruwuu.png"
+                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1645302750/DiaryListGreen_drtowj.png"
                   alt="frame green"
                 />
                 <img
@@ -94,10 +94,10 @@ function DiaryList() {
                   alt={item.name}
                 />
               </div>
-              <div className="c-diaryList__products--text">
-                <p> </p>
-                <p>{item.name} sin datos de alergia</p>
-                {/* <p>Nota: {item.diaryList[0].notes}</p> */}
+              <div className="c-diaryList__products--text">                
+                  <p> </p>
+                  <p>{item.name} sin datos de alergia</p>
+                  {/* <p>Nota: {item.diaryList[0].notes}</p> */}            
               </div>
               <div className="c-diaryList__products--icon">
                 <img
@@ -115,11 +115,11 @@ function DiaryList() {
       {product.map((item) =>
         item.allergens.slice(0, 1).map((item2) =>
           allergens.includes(item2) ? (
-            <div className="c-diaryList__products" key={item._id}>
+            <div className="c-diaryList__products pink" key={item._id}>
               <div className="c-diaryList__products--img">
                 <img
                   className="c-diaryList__products--img--frame"
-                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-rojo_prrt2l.png"
+                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1645302750/DiaryListPink_pitwxf.png"
                   alt="frame pink"
                 />
                 <img
@@ -128,10 +128,10 @@ function DiaryList() {
                   alt={item.name}
                 />
               </div>
-              <div className="c-diaryList__products--text">
-                <p> </p>
-                <p>{item.name} con alergia</p>
-                {/* <p>Nota: {item.diaryList[0].notes}</p> */}
+              <div className="c-diaryList__products--text">                
+                  <p> </p>
+                  <p>{item.name} con alergia</p>
+                  {/* <p>Nota: {item.diaryList[0].notes}</p> */}                
               </div>
               <div className="c-diaryList__products--icon">
                 <img
@@ -149,7 +149,7 @@ function DiaryList() {
               <div className="c-diaryList__products--img">
                 <img
                   className="c-diaryList__products--img--frame"
-                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644522246/border-verde_lruwuu.png"
+                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1645302750/DiaryListGreen_drtowj.png"
                   alt="frame green"
                 />
                 <img
@@ -158,10 +158,10 @@ function DiaryList() {
                   alt={item.name}
                 />
               </div>
-              <div className="c-diaryList__products--text">
-                <p> </p>
-                <p>{item.name} sin alergia</p>
-                {/* <p>Nota: {item.diaryList[0].notes}</p> */}
+              <div className="c-diaryList__products--text">               
+                  <p> </p>
+                  <p>{item.name} sin alergia</p>
+                  {/* <p>Nota: {item.diaryList[0].notes}</p> */}               
               </div>
               <div className="c-diaryList__products--icon">
                 <img
@@ -177,7 +177,7 @@ function DiaryList() {
           )
         )
       )}
-      <button>Guardar</button>
+      <button className="button">Guardar</button>
     </div>
   );
 }
