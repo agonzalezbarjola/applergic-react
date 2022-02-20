@@ -41,6 +41,7 @@ function DiaryList() {
             },
           },
         });
+        console.log(res);
         setProduct(res.data.res);
 
         // .then((res) => {

@@ -7,6 +7,7 @@ import Favorite from "../../components/Favorite/Favorite";
 
 function FavoritesPage() {
   const [dataUser, setDataUser] = useState([]);
+  const [update, setUpdate] = useState(false);
   const idUser = JSON.parse(localStorage.getItem("id"));
 
   const getUser = async () => {
@@ -30,9 +31,37 @@ function FavoritesPage() {
     // });
   };
 
+  function handleClick(e) {
+    e.preventDefault();
+    console.log(e.target.name);
+    const idProduct = e.target.name;
+    const deleteFavorite = async () => {
+      const res = await axios.patch(`http://localhost:8000/api/users/delete/${idUser}/${idProduct}`, {
+        headers: {
+          Authorization: {
+            toString() {
+              return `Bearer ${localStorage.getItem("token")}`;
+            },
+          },
+        },
+        
+      });
+
+      console.log(res);
+      setUpdate(!update);
+      
+      
+
+    };
+    deleteFavorite();
+    
+
+  }
+
   useEffect(() => {
     getUser();
-  }, []);
+
+  }, [update]);
   console.log(dataUser);
 
   return (
@@ -47,6 +76,7 @@ function FavoritesPage() {
             <p>{item.name}</p>
             <p>{item.brand}</p>
           </div>
+          <input type="button" value="X" name={item._id} onClick={handleClick}/>
         </div>
       ))}
       <Link to='/home' className="c-Favoritepage__btn">

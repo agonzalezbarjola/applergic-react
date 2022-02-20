@@ -50,7 +50,7 @@ const getUser = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const userDB = await User.findById(id).populate('fav');
+    const userDB = await User.findById(id).populate("fav");
     if (!userDB) {
       return next(setError(404, "User not found"));
     }
@@ -62,7 +62,7 @@ const getUser = async (req, res, next) => {
 
 const getAllUsers = async (req, res, next) => {
   try {
-    const userDB = await User.find().populate('fav')
+    const userDB = await User.find().populate("fav");
     if (!userDB) {
       return next(setError(404, "User not found"));
     }
@@ -87,10 +87,7 @@ const patchUser = async (req, res, next) => {
 
     // patchUser._id = id;
 
-    const userDB = await User.findByIdAndUpdate(
-      id,
-      patchUser
-    );
+    const userDB = await User.findByIdAndUpdate(id, patchUser);
 
     //aqui abajo son las respeustas
     if (!userDB) {
@@ -108,6 +105,26 @@ const patchUser = async (req, res, next) => {
   }
 };
 
+const deleteFavorite = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { idProduct } = req.params;
+
+    const userDB = await User.update(
+      { _id: id },
+      { $pull: { fav: idProduct } }
+    );
+
+    //aqui abajo son las respeustas
+    if (!userDB) {
+      return next(setError(404, "Error while update user"));
+    }
+    if (userDB) return res.status(200).json({userDB: userDB, idProduct: idProduct});
+  } catch (error) {
+    return next(setError(500, "User patch server error"));
+  }
+};
+
 module.exports = {
   postNewUser,
   loginUser,
@@ -115,4 +132,5 @@ module.exports = {
   getUser,
   getAllUsers,
   patchUser,
+  deleteFavorite,
 };
