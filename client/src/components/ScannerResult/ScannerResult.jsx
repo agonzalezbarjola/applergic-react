@@ -150,7 +150,9 @@ function ScannerResult({ props, props2 }) {
         )}
       </div>
       <div className="c-scannerresult__btn">
+        <Link to="/home">
         <button>Escanea otro producto</button>
+        </Link>        
       </div>
     </div>
   );
