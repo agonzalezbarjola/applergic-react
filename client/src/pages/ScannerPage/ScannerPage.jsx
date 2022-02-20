@@ -48,7 +48,7 @@ function ScannerPage() {
             <div className="c-scannerPage__title--text">
               <h1>Escaneando...</h1>
               <p>
-                Tan solo tienes que centrar el <span>{text}</span> el producto
+                Tan solo tienes que centrar el <span>{select ? "código de barras" : "código QR" }</span> el producto
                 requerido.
               </p>
             </div>
