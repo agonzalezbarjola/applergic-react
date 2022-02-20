@@ -6,8 +6,6 @@ import axios from "axios";
 function ScannerResult({ props, props2 }) {
   const [error, setError] = useState();
 
-  
-
   // const arrayProduct = [];
   // if (props2.length) {
   //   if (!props.fav.includes(props2[0]._id)) {
@@ -16,7 +14,7 @@ function ScannerResult({ props, props2 }) {
   // }
 
   console.log(props);
-   console.log(props2);
+  console.log(props2);
   const addFavorite = () => {
     axios
       .patch("http://localhost:8000/api/users/" + props._id, {
@@ -31,7 +29,6 @@ function ScannerResult({ props, props2 }) {
       })
       .then((res) => {
         console.log(res);
-        
       })
       .catch((err) => {
         console.log(err);
@@ -130,11 +127,11 @@ function ScannerResult({ props, props2 }) {
           ></img>
           <Link to="/diary">
             <img
-            src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326248/diario_3x_nsw6xi.png"
-            alt="diary"
-          ></img>
+              src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326248/diario_3x_nsw6xi.png"
+              alt="diary"
+            ></img>
           </Link>
-          
+
           <img
             src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644326247/red_3x_ivwedb.png"
             alt="shared"
@@ -151,9 +148,9 @@ function ScannerResult({ props, props2 }) {
         )}
       </div>
       <div className="c-scannerresult__btn">
-        <Link to="/home">
-        <button>Escanea otro producto</button>
-        </Link>        
+        <button onClick={() => document.location.reload()}>
+          Escanea otro producto
+        </button>
       </div>
     </div>
   );

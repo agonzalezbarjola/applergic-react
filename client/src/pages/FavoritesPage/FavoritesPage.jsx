@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link }  from 'react-router-dom'
+import { Link } from "react-router-dom";
 import "./FavoritePage.scss";
 import qs from "qs";
 import Favorite from "../../components/Favorite/Favorite";
@@ -36,31 +36,27 @@ function FavoritesPage() {
     console.log(e.target.name);
     const idProduct = e.target.name;
     const deleteFavorite = async () => {
-      const res = await axios.patch(`http://localhost:8000/api/users/delete/${idUser}/${idProduct}`, {
-        headers: {
-          Authorization: {
-            toString() {
-              return `Bearer ${localStorage.getItem("token")}`;
+      const res = await axios.patch(
+        `http://localhost:8000/api/users/delete/${idUser}/${idProduct}`,
+        {
+          headers: {
+            Authorization: {
+              toString() {
+                return `Bearer ${localStorage.getItem("token")}`;
+              },
             },
           },
-        },
-        
-      });
+        }
+      );
 
       console.log(res);
       setUpdate(!update);
-      
-      
-
     };
     deleteFavorite();
-    
-
   }
 
   useEffect(() => {
     getUser();
-
   }, [update]);
   console.log(dataUser);
 
@@ -68,7 +64,7 @@ function FavoritesPage() {
     <div className="c-Favoritepage">
       <h3>Aquí tienes una lista de tus productos favoritos.</h3>
       {dataUser.map((item) => (
-        <div key={item._id}  className="c-Favoritepage__products">
+        <div key={item._id} className="c-Favoritepage__products">
           <div className="c-Favoritepage__products--img">
             <img src={item.image} alt="" />
           </div>
@@ -76,10 +72,16 @@ function FavoritesPage() {
             <p>{item.name}</p>
             <p>{item.brand}</p>
           </div>
-          <input type="button" value="X" name={item._id} onClick={handleClick}/>
+          <input
+            className="c-Favoritepage__products--input"
+            type="button"
+            value=""
+            name={item._id}
+            onClick={handleClick}
+          />
         </div>
       ))}
-      <Link to='/home' className="c-Favoritepage__btn">
+      <Link to="/home" className="c-Favoritepage__btn">
         <button className="button">Volver</button>
       </Link>
     </div>
