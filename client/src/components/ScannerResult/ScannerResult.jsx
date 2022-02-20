@@ -15,7 +15,8 @@ function ScannerResult({ props, props2 }) {
   //   }
   // }
 
-  console.log(props, props2);
+  console.log(props);
+   console.log(props2);
   const addFavorite = () => {
     axios
       .patch("http://localhost:8000/api/users/" + props._id, {

@@ -75,7 +75,6 @@ const getAllUsers = async (req, res, next) => {
 const patchUser = async (req, res, next) => {
   try {
     const { id } = req.params;
-
     const patchUser = new User(req.body);
     patchUser._id = id;
 
@@ -87,7 +86,7 @@ const patchUser = async (req, res, next) => {
 
     // patchUser._id = id;
 
-    const userDB = await User.findByIdAndUpdate(id, patchUser);
+    const userDB = await User.findByIdAndUpdate(id, {$addToSet: {fav: patchUser.fav}});
 
     //aqui abajo son las respeustas
     if (!userDB) {
