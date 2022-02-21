@@ -56,7 +56,7 @@ function Prueba({ props }) {
   useEffect(() => {
     localStorage.setItem(
       "code",
-      localStorage.getItem("code") === null ? "" :
+      localStorage.getItem("code") === null ? props :
         localStorage.getItem("code") + "," + props,
       props
     );

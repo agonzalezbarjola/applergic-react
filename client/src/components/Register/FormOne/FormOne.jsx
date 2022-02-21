@@ -68,9 +68,11 @@ function FormOne({ props, props2 }) {
                 type="file"
                 name="upload-photo"
                 id="upload-photo"                  
-                accept=".jpg, .jpeg, .gif, .png"               
+                accept=".jpg, .jpeg, .gif, .png" 
+                //encType="multipart/form-data" 
+
                 onChange={handleImageChange}
-                // {...register("image")}
+                //{...register("image")}
               />
               {/* <input
                   type="file"
