@@ -16,10 +16,10 @@ function FormFour({ props }) {
         password: props.password,
       })
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.userDB.name));
-        localStorage.setItem("id", JSON.stringify(res.data.userDB._id));
-        localStorage.setItem("email", JSON.stringify(res.data.userDB.email));
+        sessionStorage.setItem("token", res.data.token);
+        sessionStorage.setItem("user", JSON.stringify(res.data.userDB.name));
+        sessionStorage.setItem("id", JSON.stringify(res.data.userDB._id));
+        sessionStorage.setItem("email", JSON.stringify(res.data.userDB.email));
         console.log(res.data);
         navigate("/scanner");
         setJwt(true);

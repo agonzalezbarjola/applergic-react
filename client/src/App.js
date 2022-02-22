@@ -17,8 +17,8 @@ import FavoritesPage from "./pages/FavoritesPage/FavoritesPage";
 
 
 function App() {
-  const [Jwt, setJwt] = useState(localStorage.getItem("token") || null);
-  const [diaryList, setDiaryList] = useState(localStorage.getItem("code") === "true");
+  const [Jwt, setJwt] = useState(sessionStorage.getItem("token") || null);
+  const [diaryList, setDiaryList] = useState(sessionStorage.getItem("code") === "true");
   const [isLoading, setIsLoading] = useState(true);
   return (
     <DiaryListContext.Provider value={{ diaryList, setDiaryList }}>

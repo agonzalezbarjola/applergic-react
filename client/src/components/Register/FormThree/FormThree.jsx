@@ -29,7 +29,7 @@ function FormThree({ props, props2 }) {
       headers: {
         Authorization: {
           toString() {
-            return `Bearer ${localStorage.getItem("token")}`;
+            return `Bearer ${sessionStorage.getItem("token")}`;
           },
         },
       },

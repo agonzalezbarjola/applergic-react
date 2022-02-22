@@ -4,19 +4,13 @@ import { useNavigate, Link, Navigate } from "react-router-dom";
 function Logout() {
   const { Jwt, setJwt } = useContext(JwtContext);
   const navigate = useNavigate();
-  Jwt && localStorage.removeItem("token");
+  Jwt && sessionStorage.removeItem("token");
   
   useEffect(()=>{
     setTimeout(() => {
       setJwt(false);
-    console.log(Jwt);
-    // localStorage.removeItem("code");
-    // localStorage.removeItem("allergens");
-    // localStorage.removeItem("userComplete");
-    // localStorage.removeItem("email");
-    // localStorage.removeItem("user");
-    // localStorage.removeItem("id");
-    localStorage.clear();
+    console.log(Jwt);   
+    sessionStorage.clear();
     !Jwt && navigate("/login");
     }, 1000);
     
@@ -27,8 +21,8 @@ function Logout() {
   return (
     <div className="isloading">
       <img
-        src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644532203/loading_yhwlmu.gif"
-        alt=""
+        src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1645563034/35771931234507.564a1d2403b3a_bzc9bz.gif"
+        alt="isloading gif"
       ></img>
     </div>
   );

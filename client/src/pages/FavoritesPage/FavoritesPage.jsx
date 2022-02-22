@@ -8,14 +8,14 @@ import Favorite from "../../components/Favorite/Favorite";
 function FavoritesPage() {
   const [dataUser, setDataUser] = useState([]);
   const [update, setUpdate] = useState(false);
-  const idUser = JSON.parse(localStorage.getItem("id"));
+  const idUser = JSON.parse(sessionStorage.getItem("id"));
 
   const getUser = async () => {
     const res = await axios.get(`http://localhost:8000/api/users/${idUser}`, {
       headers: {
         Authorization: {
           toString() {
-            return `Bearer ${localStorage.getItem("token")}`;
+            return `Bearer ${sessionStorage.getItem("token")}`;
           },
         },
       },
@@ -42,7 +42,7 @@ function FavoritesPage() {
           headers: {
             Authorization: {
               toString() {
-                return `Bearer ${localStorage.getItem("token")}`;
+                return `Bearer ${sessionStorage.getItem("token")}`;
               },
             },
           },

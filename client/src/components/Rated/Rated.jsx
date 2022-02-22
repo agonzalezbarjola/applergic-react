@@ -24,7 +24,7 @@ export default function MyComponent() {
         headers: {
           'Authorization': {
             toString () {
-                return `Bearer ${localStorage.getItem('token')}`
+                return `Bearer ${sessionStorage.getItem('token')}`
             }
         }
         }

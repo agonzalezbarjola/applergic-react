@@ -22,7 +22,7 @@ function DiaryList() {
       const codesFiltred = codes.filter(code => code !== codeToDelete)
 
       setCodes(codesFiltred);
-      localStorage.setItem("code", "," + codesFiltred);
+      sessionStorage.setItem("code", "," + codesFiltred);
     }
     setChange(!change);
   }
@@ -32,9 +32,9 @@ function DiaryList() {
 
   useEffect(() => {
 
-    if (localStorage.getItem("code")) {
+    if (sessionStorage.getItem("code")) {
       const diaryFinal = [];
-      const diaryListArray = localStorage.getItem("code").split(",");
+      const diaryListArray = sessionStorage.getItem("code").split(",");
 
       console.log(diaryListArray)
 
@@ -52,7 +52,7 @@ function DiaryList() {
 
 
 
-      const allergensStorage = JSON.parse(localStorage.getItem("allergens"));
+      const allergensStorage = JSON.parse(sessionStorage.getItem("allergens"));
       // console.log(allergensStorage);
       setAllergens(allergensStorage);
 
@@ -65,7 +65,7 @@ function DiaryList() {
           headers: {
             Authorization: {
               toString() {
-                return `Bearer ${localStorage.getItem("token")}`;
+                return `Bearer ${sessionStorage.getItem("token")}`;
               },
             },
           },
@@ -107,43 +107,9 @@ function DiaryList() {
 
       </div>
       <div className="c-diaryList__title">
-        <h3>¿Incluimos la selección en tu Diario?</h3>
-        <p>Añade tus comentarios para completar tu información.</p>
-      </div>
-      {product.map(
-        (item) =>
-          item.allergens.length === 0 && (
-            <div className="c-diaryList__products" key={item._id}>
-              <div className="c-diaryList__products--img">
-                <img
-                  className="c-diaryList__products--img--frame"
-                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1645302750/DiaryListGreen_drtowj.png"
-                  alt="frame green"
-                />
-                <img
-                  className="c-diaryList__products--img--product"
-                  src={item.image}
-                  alt={item.name}
-                />
-              </div>
-              <div className="c-diaryList__products--text">
-                <p> </p>
-                <p>{item.name} sin datos de alergia</p>
-                {/* <p>Nota: {item.diaryList[0].notes}</p> */}
-              </div>
-              <div className="c-diaryList__products--icon">
-                <img
-                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png"
-                  alt="icon close"
-                />
-                <img
-                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644753878/editicon_reuedr.png"
-                  alt="icon Edit"
-                />
-              </div>
-            </div>
-          )
-      )}
+        <h3>Historial diario</h3>
+        <p>Aquí tienes tus búsquedas más recientes.</p>
+      </div>     
       {product.map((item) =>
         item.allergens.slice(0, 1).map((item2) =>
           allergens.includes(item2) ? (
@@ -160,8 +126,7 @@ function DiaryList() {
                   alt={item.name}
                 />
               </div>
-              <div className="c-diaryList__products--text">
-                <p> </p>
+              <div className="c-diaryList__products--text">                
                 <p>{item.name} con alergia</p>
                 {/* <p>Nota: {item.diaryList[0].notes}</p> */}
               </div>
@@ -169,14 +134,10 @@ function DiaryList() {
                 <input
                   //className="c-Favoritepage__products--input"
                   type="button"
-                  value="X"
+                  value=""
                   name={item.code}
                   onClick={deleteProduct}
-                />
-                <img
-                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644753878/editicon_reuedr.png"
-                  alt="icon Edit"
-                />
+                />               
               </div>
             </div>
           ) : (
@@ -193,34 +154,24 @@ function DiaryList() {
                   alt={item.name}
                 />
               </div>
-              <div className="c-diaryList__products--text">
-                <p> </p>
+              <div className="c-diaryList__products--text">                
                 <p>{item.name} sin alergia</p>
                 {/* <p>Nota: {item.diaryList[0].notes}</p> */}
               </div>
               <div className="c-diaryList__products--icon">
-
                 <input
                   //className="c-Favoritepage__products--input"
                   type="button"
-                  value="X"
+                  value=""
                   name={item.code}
                   onClick={deleteProduct}
-                />
-                <img onClick={deleteProduct}
-                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png"
-                  alt="icon close"
-                />
-                <img
-                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644753878/editicon_reuedr.png"
-                  alt="icon Edit"
-                />
+                /> 
               </div>
             </div>
           )
         )
       )}
-      <button className="button">Guardar</button>
+      {/* <button className="button">Guardar</button> */}
     </div>
   );
 }

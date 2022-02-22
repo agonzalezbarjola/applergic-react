@@ -103,17 +103,20 @@
 
         &--icon {
 
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+           // background: #FA92AA;
+
+           input {
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            background-image: url('https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png');
+            background-size: contain;
+            border: none;
             position: absolute;
             right: 10px;
-            height: 100%;
-
-            img {
-                width: 25px;
-                margin: 15px 0;
-            }
+            top: 10px;
+             
+           }
         }
     }
 

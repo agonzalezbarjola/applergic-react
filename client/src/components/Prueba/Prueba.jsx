@@ -18,7 +18,7 @@ function Prueba({ props }) {
       headers: {
         Authorization: {
           toString() {
-            return `Bearer ${localStorage.getItem("token")}`;
+            return `Bearer ${sessionStorage.getItem("token")}`;
           },
         },
       },
@@ -33,12 +33,12 @@ function Prueba({ props }) {
   };
 
   const getUserById = async () => {
-    const idStorage = JSON.parse(localStorage.getItem("id"));
+    const idStorage = JSON.parse(sessionStorage.getItem("id"));
     const res = await axios(`http://localhost:8000/api/users/${idStorage}`, {
       headers: {
         Authorization: {
           toString() {
-            return `Bearer ${localStorage.getItem("token")}`;
+            return `Bearer ${sessionStorage.getItem("token")}`;
           },
         },
       },
@@ -54,10 +54,10 @@ function Prueba({ props }) {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(
+    sessionStorage.setItem(
       "code",
-      localStorage.getItem("code") === null ? props :
-        localStorage.getItem("code") + "," + props,
+      sessionStorage.getItem("code") === null ? props :
+        sessionStorage.getItem("code") + "," + props,
       props
     );
   }, [props]);

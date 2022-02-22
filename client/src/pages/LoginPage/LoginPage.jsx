@@ -15,12 +15,12 @@ const LoginPage = () => {
     console.log(formData);
     API.post("login", formData)
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.userDB.name));
-        localStorage.setItem("id", JSON.stringify(res.data.userDB._id));
-        localStorage.setItem("email", JSON.stringify(res.data.userDB.email));
-        localStorage.setItem("allergens", JSON.stringify(res.data.userDB.allergens));
-        localStorage.setItem("userComplete", JSON.stringify(res.data));
+        sessionStorage.setItem("token", res.data.token);
+        sessionStorage.setItem("user", JSON.stringify(res.data.userDB.name));
+        sessionStorage.setItem("id", JSON.stringify(res.data.userDB._id));
+        sessionStorage.setItem("email", JSON.stringify(res.data.userDB.email));
+        sessionStorage.setItem("allergens", JSON.stringify(res.data.userDB.allergens));
+        sessionStorage.setItem("userComplete", JSON.stringify(res.data));
         
        
         console.log(res.data);

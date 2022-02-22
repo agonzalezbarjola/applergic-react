@@ -54,7 +54,7 @@ function Confirmation({ props, props2, props3, props4 }) {
   //     headers: {
   //       Authorization: {
   //         toString() {
-  //           return `Bearer ${localStorage.getItem("token")}`;
+  //           return `Bearer ${sessionStorage.getItem("token")}`;
   //         },
   //       },
   //     },
