@@ -8,11 +8,35 @@ function DiaryList() {
   const [product, setProduct] = useState([]);
   const [verify, setVerify] = useState([]);
   const [allergens, setAllergens] = useState();
+  const [codes, setCodes] = useState([]);
+  const [change, setChange] = useState(true);
+
+  const deleteProduct = (e) => {
+
+    e.preventDefault();
+
+    const codeToDelete = e.target.name;
+
+    if (codes.length) {
+
+      const codesFiltred = codes.filter(code => code !== codeToDelete)
+
+      setCodes(codesFiltred);
+      localStorage.setItem("code", "," + codesFiltred);
+    }
+    setChange(!change);
+  }
+
+
+
 
   useEffect(() => {
+
     if (localStorage.getItem("code")) {
       const diaryFinal = [];
       const diaryListArray = localStorage.getItem("code").split(",");
+
+      console.log(diaryListArray)
 
       diaryListArray.forEach((item) => {
         //pushes only unique element
@@ -21,7 +45,12 @@ function DiaryList() {
         }
       });
       const diaryList = diaryFinal.filter((item) => item !== "");
-      // console.log(diaryList);
+      // console.log(diaryList);        
+      console.log(diaryList)
+      setCodes(diaryList)
+      console.log(codes)
+
+
 
       const allergensStorage = JSON.parse(localStorage.getItem("allergens"));
       // console.log(allergensStorage);
@@ -52,10 +81,12 @@ function DiaryList() {
         //   console.log(err);
         // });
       };
+
       getProducts();
     }
-  }, []);
+  }, [change]);
   console.log(product);
+  console.log(codes)
   return (
     <div className="c-diaryList">
       <div className="c-diaryList__icons">
@@ -95,10 +126,10 @@ function DiaryList() {
                   alt={item.name}
                 />
               </div>
-              <div className="c-diaryList__products--text">                
-                  <p> </p>
-                  <p>{item.name} sin datos de alergia</p>
-                  {/* <p>Nota: {item.diaryList[0].notes}</p> */}            
+              <div className="c-diaryList__products--text">
+                <p> </p>
+                <p>{item.name} sin datos de alergia</p>
+                {/* <p>Nota: {item.diaryList[0].notes}</p> */}
               </div>
               <div className="c-diaryList__products--icon">
                 <img
@@ -129,15 +160,18 @@ function DiaryList() {
                   alt={item.name}
                 />
               </div>
-              <div className="c-diaryList__products--text">                
-                  <p> </p>
-                  <p>{item.name} con alergia</p>
-                  {/* <p>Nota: {item.diaryList[0].notes}</p> */}                
+              <div className="c-diaryList__products--text">
+                <p> </p>
+                <p>{item.name} con alergia</p>
+                {/* <p>Nota: {item.diaryList[0].notes}</p> */}
               </div>
               <div className="c-diaryList__products--icon">
-                <img
-                  src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png"
-                  alt="icon close"
+                <input
+                  //className="c-Favoritepage__products--input"
+                  type="button"
+                  value="X"
+                  name={item.code}
+                  onClick={deleteProduct}
                 />
                 <img
                   src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644753878/editicon_reuedr.png"
@@ -159,13 +193,21 @@ function DiaryList() {
                   alt={item.name}
                 />
               </div>
-              <div className="c-diaryList__products--text">               
-                  <p> </p>
-                  <p>{item.name} sin alergia</p>
-                  {/* <p>Nota: {item.diaryList[0].notes}</p> */}               
+              <div className="c-diaryList__products--text">
+                <p> </p>
+                <p>{item.name} sin alergia</p>
+                {/* <p>Nota: {item.diaryList[0].notes}</p> */}
               </div>
               <div className="c-diaryList__products--icon">
-                <img
+
+                <input
+                  //className="c-Favoritepage__products--input"
+                  type="button"
+                  value="X"
+                  name={item.code}
+                  onClick={deleteProduct}
+                />
+                <img onClick={deleteProduct}
                   src="https://res.cloudinary.com/dkv0drgbb/image/upload/v1644327667/close_3x_qcn0b4.png"
                   alt="icon close"
                 />
